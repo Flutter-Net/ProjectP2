@@ -1,3 +1,4 @@
+using Flutter.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Flutter.Storing
