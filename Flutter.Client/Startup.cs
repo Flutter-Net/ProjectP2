@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Flutter.Storing;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,7 +30,7 @@ namespace Flutter.Client
             {
                 options.UseSqlServer(Configuration.GetConnectionString("sqlserver"));
             });
-            services.AddScoped<FlutterRepo>();
+            services.AddScoped<FlutterRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
