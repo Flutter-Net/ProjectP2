@@ -5,7 +5,7 @@ namespace Flutter.Domain.Models
         public string TagName {get;set;}
 
         public Tag(string name){
-            TagName = "#"+name;
+            TagName = name;
         }
     }
 }
