@@ -1,8 +1,61 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<script type ="text/javascript">
+    
+    
+
+        
+    const htmlChange=()=>{
+        let thehtml = document.getElementById("LineItem").innerHTML;
+        const arr = ['<i class="far fa-comment"></i>Post','<i class="fas fa-book"></i>View','<i class="far fa-comments"></i>React'];
+        for(let i =0 ; i<arr.length;i++){
+            if(thehtml == arr[i] && thehtml != arr[arr.length-1]){
+                document.getElementById("LineItem").innerHTML = arr[i+1]
+            }else if(thehtml == arr[arr.length-1]){
+                document.getElementById("LineItem").innerHTML=arr[0]
+            }
+        }
+        
+    }
+
+</script>
+
+<div class="columns is-centered">
+    <div class="column is-purple-container is-half has-text-centered is-mobile-hidden">
+
+        <h1 class="is-size-1 is-cust-font has-text-black">Flutter</h1>
+        <h2 class="is-size-4 has-text-black">what can Flutter do?</h2>
+
+        <ul class="list leftcentered">
+            <li onmouseover="htmlChange()" id="LineItem" class="is-home-line"><i class="far fa-comment"></i>Post</li>
+            <li ></li>
+             @* <li class="is-home-line"><i class="fas fa-book"></i>View</li> *@
+            @* <Li></Li> *@
+            @* <li class="is-home-line"><i class="far fa-comments"></i>React</li>  *@
+        </ul>
+
+    </div>
+    <div class="column is-half is-white-container">
+        <div class=" rightcentered">
+            <a href="/Feed" class="is-cust-font">
+                <img src="~/bat (1).png" alt="purple bat" class="is-small-bat">
+                Flutter
+            </a>
+            <strong>
+                    See What's Happening Online
+                </strong>
+            <br>
+            <strong>
+                Sign Up Today
+            </strong>
+            <br>
+            <button class="button is-large is-rounded is-Flutter"> Sign Up </button>
+            <br>
+            <button class="button is-large is-rounded "> Login </button>
+        </div>
+    </div>
 </div>
+
