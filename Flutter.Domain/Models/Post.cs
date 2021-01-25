@@ -13,6 +13,7 @@ namespace Flutter.Domain.Models
         public string Content { get; set; }
         public long LikeScore { get; set; }
         public long CommentOfId { get; set; }
+        public Post() { }
         public Post(long inputUserId, string inputContent)
         {
             AddUserId(inputUserId);

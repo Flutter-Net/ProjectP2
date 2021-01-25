@@ -19,7 +19,7 @@ namespace Flutter.Storing
         {
             //build entities here
             builder.Entity<AUser>().HasKey(user => user.EntityId);
-            builder.Entity<AUser>().OwnsMany(user => user.Posts);
+            builder.Entity<AUser>().HasMany(user => user.Posts);
 
             builder.Entity<Post>().HasKey(post => post.EntityId);
             builder.Entity<Post>().HasMany(post => post.TagIds).WithMany(tag => tag.TaggedPosts);

@@ -13,18 +13,18 @@ namespace Flutter.Storing
         {
             _ctx = context;
         }
-        public void AddUser(string name, string password){
-            var user = new AUser(name,password);
-            _ctx.Users.Add(user);
-        }
-        public void AddPost(long inputUserId, string inputContent, long CommentOf, IEnumerable<long> Tags){
-            var post = new Post(inputUserId,inputContent,CommentOf,Tags);
-            _ctx.Users.Add(post);
-        }
-        public void AddTag(string name){
-            var tag = new Tag(name);
-            _ctx.Tags.Add(tag);
-        }
+        // public void AddUser(string name, string password){
+        //     var user = new AUser(name,password);
+        //     _ctx.Users.Add(user);
+        // }
+        // public void AddPost(long inputUserId, string inputContent, long CommentOf, IEnumerable<long> Tags){
+        //     var post = new Post(inputUserId,inputContent,CommentOf,Tags);
+        //     _ctx.Users.Add(post);
+        // }
+        // public void AddTag(string name){
+        //     var tag = new Tag(name);
+        //     _ctx.Tags.Add(tag);
+        // }
         // public IEnumerable<Store> GetStores()
         // {
         //     return _ctx.Stores;
