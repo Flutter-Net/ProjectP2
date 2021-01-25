@@ -1,3 +1,5 @@
+using Flutter.Domain.Abstracts;
+
 namespace Flutter.Domain.Models
 {
     public class Tag : AEntity
