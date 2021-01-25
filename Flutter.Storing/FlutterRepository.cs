@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Flutter.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Flutter.Storing
