@@ -9,7 +9,7 @@ namespace Flutter.Domain.Models
     {
         public long UserId { get; set; }
         public DateTime DatePosted { get; set; }
-        public List<long> TagIds { get; set; }
+        public List<Tag> TagIds { get; set; }
         public string Content { get; set; }
         public long LikeScore { get; set; }
         public long CommentOfId { get; set; }
@@ -20,7 +20,7 @@ namespace Flutter.Domain.Models
             AddAsComment(0);
             AddDate();
             InitializeLikes();
-            AddTags(new List<long>());
+            AddTags(new List<Tag>());
         }
         public Post(long inputUserId, string inputContent, long CommentOf)
         {
@@ -29,9 +29,9 @@ namespace Flutter.Domain.Models
             AddAsComment(CommentOf);
             AddDate();
             InitializeLikes();
-            AddTags(new List<long>());
+            AddTags(new List<Tag>());
         }
-        public Post(long inputUserId, string inputContent, long CommentOf, IEnumerable<long> Tags)
+        public Post(long inputUserId, string inputContent, long CommentOf, IEnumerable<Tag> Tags)
         {
             AddUserId(inputUserId);
             AddContent(inputContent);
@@ -60,7 +60,7 @@ namespace Flutter.Domain.Models
         {
             LikeScore = 0;
         }
-        public void AddTags(IEnumerable<long> tags)
+        public void AddTags(IEnumerable<Tag> tags)
         {
             TagIds = tags.ToList();
         }
