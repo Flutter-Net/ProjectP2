@@ -7,7 +7,8 @@ namespace Flutter.Storing
     {
         public DbSet<AUser> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Tag> Tags {get;set;}
         public FlutterContext(DbContextOptions<FlutterContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
@@ -17,6 +18,9 @@ namespace Flutter.Storing
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //build entities here
+            builder.Entity<AUser>().HasKey(u => u.EntityId);
+            builder.Entity<Post>().HasKey(p => p.EntityId);
+            builder.Entity<Tag>().HasKey(t => t.EntityId);
         }
     }
 }
