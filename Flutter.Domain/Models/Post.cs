@@ -13,12 +13,6 @@ namespace Flutter.Domain.Models
         public string Content { get; set; }
         public long LikeScore { get; set; }
         public long CommentOfId { get; set; }
-        // public Post()
-        // {
-        //     CommentOfId = 0;
-        //     DatePosted = DateTime.Now;
-        //     LikeScore = 0;
-        // }
         public Post(long inputUserId, string inputContent)
         {
             AddUserId(inputUserId);
@@ -26,6 +20,7 @@ namespace Flutter.Domain.Models
             AddAsComment(0);
             AddDate();
             InitializeLikes();
+            AddTags(new List<long>());
         }
         public Post(long inputUserId, string inputContent, long CommentOf)
         {
@@ -34,6 +29,7 @@ namespace Flutter.Domain.Models
             AddAsComment(CommentOf);
             AddDate();
             InitializeLikes();
+            AddTags(new List<long>());
         }
         public Post(long inputUserId, string inputContent, long CommentOf, IEnumerable<long> Tags)
         {
