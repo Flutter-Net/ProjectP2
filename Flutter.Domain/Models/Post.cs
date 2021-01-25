@@ -13,36 +13,60 @@ namespace Flutter.Domain.Models
         public string Content { get; set; }
         public long LikeScore { get; set; }
         public long CommentOfId { get; set; }
-        public Post()
-        {
-            CommentOfId = 0;
-            DatePosted = DateTime.Now;
-            LikeScore = 0;
-        }
+        // public Post()
+        // {
+        //     CommentOfId = 0;
+        //     DatePosted = DateTime.Now;
+        //     LikeScore = 0;
+        // }
         public Post(long inputUserId, string inputContent)
         {
-            UserId = inputUserId;
-            CommentOfId = 0;
-            Content = inputContent;
-            DatePosted = DateTime.Now;
-            LikeScore = 0;
+            AddUserId(inputUserId);
+            AddContent(inputContent);
+            AddAsComment(0);
+            AddDate();
+            InitializeLikes();
         }
         public Post(long inputUserId, string inputContent, long CommentOf)
         {
-            UserId = inputUserId;
-            Content = inputContent;
-            CommentOfId = CommentOf;
+            AddUserId(inputUserId);
+            AddContent(inputContent);
+            AddAsComment(CommentOf);
+            AddDate();
+            InitializeLikes();
+        }
+        public Post(long inputUserId, string inputContent, long CommentOf, IEnumerable<long> Tags)
+        {
+            AddUserId(inputUserId);
+            AddContent(inputContent);
+            AddAsComment(CommentOf);
+            AddDate();
+            InitializeLikes();
+            AddTags(Tags);
+        }
+        public void AddUserId(long InputUserId)
+        {
+            UserId = InputUserId;
+        }
+        public void AddAsComment(long InputPostId)
+        {
+            CommentOfId = InputPostId;
+        }
+        public void AddContent(string InputContent)
+        {
+            Content = InputContent;
+        }
+        public void AddDate()
+        {
             DatePosted = DateTime.Now;
+        }
+        public void InitializeLikes()
+        {
             LikeScore = 0;
         }
-        public Post(long inputUserId, string inputContent, long CommentOf,IEnumerable<long> Tags)
+        public void AddTags(IEnumerable<long> tags)
         {
-            UserId = inputUserId;
-            Content = inputContent;
-            CommentOfId = CommentOf;
-            TagIds = Tags.ToList();
-            DatePosted = DateTime.Now;
-            LikeScore = 0;
+            TagIds = tags.ToList();
         }
     }
 }
