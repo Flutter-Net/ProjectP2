@@ -1,28 +1,41 @@
 using System;
+using System.Collections.Generic;
 using Flutter.Domain.Abstracts;
 
 namespace Flutter.Domain.Models
 {
     public class Post : AEntity
     {
-      public DateTime DatePosted { get; set; }
-
-      public string Content { get; set; }
-
-      public long CommentOf { get; set; }
-
-      public long CommentID { get; set; }
-
-      public Post()
-      {
-        DatePosted = DateTime.Now;
-      }
-
-      public Post(long id)
-      {
-        DatePosted = DateTime.Now;
-        CommentOf = id;
-        CommentID = System.DateTime.Now.Ticks;
-      }
+        public long UserId { get; set; }
+        public DateTime DatePosted { get; set; }
+        public string Content { get; set; }
+        public List<Comment> Comments { get; set; }
+        public long LikeScore { get; set; }
+        public Post()
+        {
+            DatePosted = DateTime.Now;
+            Comments = new List<Comment>();
+            LikeScore = 0;
+        }
+        public Post(long inputUserId, string inputContent)
+        {
+            UserId = inputUserId;
+            Content = inputContent;
+            DatePosted = DateTime.Now;
+            Comments = new List<Comment>();
+            LikeScore = 0;
+        }
+        public void EditContent(string editedContent)
+        {
+            Content = editedContent;
+        }
+        public void AddComment(Comment ToBeAdded)
+        {
+            Comments.Add(ToBeAdded);
+        }
+        public void RemoveComment(Comment ToBeRemoved)
+        {
+            Comments.Remove(ToBeRemoved);
+        }
     }
 }
