@@ -1,0 +1,139 @@
+@{
+    ViewData["Title"] = "Feed";
+}
+
+<script type="text/javascript">
+
+    let PostText = ""
+    const BadWords = ['shit', 'ass', 'fuck', 'gay', 'damn', 'bastard', 'bitch', 'cunt', 'poop', 'nigg', 'cock','dick', 'retard', 'pussy']
+
+
+    const HandleText = () => {
+
+
+        let str = PostText.toLowerCase()
+        let bad = false
+        for (let i = 0; i < BadWords.length; i++) {
+            if (str.includes(BadWords[i])) {
+                bad = true
+            }
+        }
+        if (bad === true) {
+            alert('Post contains inappropriate content')
+
+        }
+        else {
+            Post()
+        }
+
+    }
+
+    const UpdatePostTex = () => {
+        PostText = document.getElementById("PostText").value;
+    }
+
+
+    const Post = () => {
+        alert(PostText)
+        console.log(PostText)
+    }
+
+</script>
+
+<div class="columns">
+    <div class="column is-one-third">
+        <div class="filters-container">
+            <div class="columns is-centered">
+                <h1 class="is-size-1 is-weight-bold has-text-black">View By:</h1>
+                <hr>
+            </div>
+            <div class="columns is-centered">
+                <button class="button is-Flutter is-long">View By Date</button>
+                <hr>
+            </div>
+            <div class="columns is-centered">
+                <button class="button is-Flutter is-long">View Most Commented</button>
+                <hr>
+            </div>
+            <div class="columns is-centered">
+                <button class="button is-Flutter is-long">View Friends Only</button>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="column is-one-third is-post-container">
+        <textarea class="textarea" placeholder="Your post here" id="PostText" onchange="UpdatePostTex()"></textarea>
+        <button class="button is-Flutter" onclick="HandleText()">Post</button>
+        <div class="is-post">
+            <strong>UserName</strong>
+            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
+                mattis fermentum libero, non volutpat.
+
+            </p>
+            <button class="button is-Flutter">Comment</button>
+            <button class="button is-Flutter">Like</button>
+        </div>
+        <div class="is-post">
+            <strong>UserName</strong>
+            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
+                mattis fermentum libero, non volutpat.
+
+            </p>
+            <button class="button is-Flutter">Comment</button>
+            <button class="button is-Flutter">Like</button>
+        </div>
+        <div class="is-post">
+            <strong>UserName</strong>
+            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
+                mattis fermentum libero, non volutpat.
+
+            </p>
+            <button class="button is-Flutter">Comment</button>
+            <button class="button is-Flutter">Like</button>
+        </div>
+        <div class="is-post">
+            <strong>UserName</strong>
+            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
+                mattis fermentum libero, non volutpat.
+
+            </p>
+            <button class="button is-Flutter">Comment</button>
+            <button class="button is-Flutter">Like</button>
+        </div>
+        <div class="is-post">
+            <strong>UserName</strong>
+            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
+                mattis fermentum libero, non volutpat.
+
+            </p>
+            <button class="button is-Flutter">Comment</button>
+            <button class="button is-Flutter">Like</button>
+        </div>
+        <div class="is-post">
+            <strong>UserName</strong>
+            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
+                mattis fermentum libero, non volutpat.
+
+            </p>
+            <button class="button is-Flutter">Comment</button>
+            <button class="button is-Flutter">Like</button>
+        </div>
+        <div class="is-post">
+            <strong>UserName</strong>
+            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
+                mattis fermentum libero, non volutpat.
+
+            </p>
+            <button class="button is-Flutter">Comment</button>
+            <button class="button is-Flutter">Like</button>
+        </div>
+       
+    </div>
+</div>
