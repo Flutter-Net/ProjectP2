@@ -1,3 +1,4 @@
+using Flutter.Domain.Models;
 using Xunit;
 
 namespace Flutter.Testing
