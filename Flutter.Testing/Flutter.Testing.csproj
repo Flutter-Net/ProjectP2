@@ -19,4 +19,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Flutter.Domain\Flutter.Domain.csproj" />
+    <ProjectReference Include="..\Flutter.Storing\Flutter.Storing.csproj" />
+    <ProjectReference Include="..\Flutter.Client\Flutter.Client.csproj" />
+  </ItemGroup>
+
 </Project>
