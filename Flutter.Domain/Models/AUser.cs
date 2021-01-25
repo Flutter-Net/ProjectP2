@@ -13,6 +13,23 @@ namespace Flutter.Domain.Models
         public AUser()
         {
             DateCreated = DateTime.Now;
+            Posts = new List<Post>();
         }
+        public AUser(string inputName, string inputPass)
+        {
+            Name = inputName;
+            Password = inputPass;
+            DateCreated = DateTime.Now;
+            Posts = new List<Post>();
+        }
+        public void AddPost(Post ToBeAdded)
+        {
+            Posts.Add(ToBeAdded);
+        }
+        public void RemovePost(Post ToBeRemoved)
+        {
+            Posts.Remove(ToBeRemoved);
+        }
+
     }
 }
