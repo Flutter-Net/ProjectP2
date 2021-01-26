@@ -4,6 +4,8 @@
     ViewData["Title"] = "Profile";
 }
 
+@model Flutter.Client.Models.UserViewModel 
+
 <script type="text/javascript">
 
     let PostText = ""
@@ -46,12 +48,19 @@
     <div class="column is-one-third">
         <div class="filters-container">
             <div class="columns is-centered">
+<<<<<<< HEAD:Flutter.Client/Views/Home/UserProfile.cshtml
                 <h1 class="is-size-1 is-weight-bold has-text-black">@Model.UserName</h1>
+=======
+                <h1 class="is-size-1 is-weight-bold has-text-black">
+                    @* @Model.UserName *@
+                    </h1>
+>>>>>>> 67c853b5209c327d5249d85ea3199e4e32e38e0b:Flutter.Client/Views/User/UserProfile.cshtml
                 <hr>
             </div>
             <div class="columns is-centered">
                 <div class="is-post">
                 <p>
+<<<<<<< HEAD:Flutter.Client/Views/Home/UserProfile.cshtml
 <<<<<<< HEAD
                   @Model.AboutMe
 
@@ -63,13 +72,17 @@
 
 >>>>>>> 7e48d5b86a1d483cc2bf09ca19c10117ed26235a
 >>>>>>> 95a125e90a1854d4f775c777b294bdb6abd684e5
+=======
+                  @* @Model.AboutMe *@
+
+>>>>>>> 67c853b5209c327d5249d85ea3199e4e32e38e0b:Flutter.Client/Views/User/UserProfile.cshtml
                 </p>
                 </div>
                 <hr>
             </div>
             <div class="columns is-centered">
                 <p>
-                  Date Joined: @Model.DateCreated
+                  @* Date Joined: @Model.DateCreated *@
 
                 </p>
                 <hr>
@@ -108,19 +121,19 @@
         <textarea class="textarea" placeholder="Your post here" id="PostText" onchange="UpdatePostTex()"></textarea>
         <button class="button is-Flutter" onclick="HandleText()">Post</button>
         <div class="is-post">
-          @if (@Model.Posts !- null)
-          {
-            @foreach (var post in @Model.Posts)
-            {
-            <strong>@post.UserID</strong>
+          @* @if (@Model.Posts != null) *@
+          @* { *@
+            @* @foreach (var post in @Model.Posts) *@
+            @* { *@
+            @* <strong>@post.UserId</strong> *@
             <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
-                @post.Content
+                @* @post.Content *@
 
             </p>
             <button class="button is-Flutter">Comment</button>
             <button class="button is-Flutter">Like</button>
-            }
-          }
+            @* } *@
+          @* } *@
         </div>
 
 

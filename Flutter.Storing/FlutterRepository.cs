@@ -3,7 +3,7 @@ using System.Linq;
 using Flutter.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Flutter.Domain.Abstracts;
-using Flutter.Domain.Models;
+
 
 namespace Flutter.Storing
 {
@@ -16,18 +16,20 @@ namespace Flutter.Storing
         {
             _ctx = context;
         }
-        // public void Add<T>(T item) where T :AEntity
-        // {
-
-        //     _ctx.Set<T>.Add(item);
-        // }
-        public void AddUser(AUser user)
+         public void AddUser(AUser user)
         {
             _ctx.Users.Add(user);
-            _ctx.SaveChanges(); 
+            _ctx.SaveChanges();
         }
-        public List<string> GetUsers(){
-             return _ctx.Users.Select(user => user.Name).ToList();
+        public List<string> GetUsers()
+        {
+            return _ctx.Users.Select(user => user.Name).ToList();
+        }
+
+        public string UserPassword(string UserName)
+        {
+            var user = _ctx.Users.FirstOrDefault(u => u.Name == UserName);
+            return user.Password;
         }
     }
 }
