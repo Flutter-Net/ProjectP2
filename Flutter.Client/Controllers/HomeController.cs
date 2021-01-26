@@ -25,7 +25,7 @@ namespace Flutter.Client.Controllers
         {
             return View();
         }
-
+        
         public IActionResult Privacy()
         {
             return View();
