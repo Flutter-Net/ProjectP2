@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Flutter.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Flutter.Domain.Abstracts;
 using Flutter.Domain.Models;
