@@ -44,6 +44,13 @@ namespace Flutter.Client.Controllers
 
             return View("Users",model);
         }
+        [HttpGet("/Users")]
+        public IActionResult Users(){
+            var model = new UserViewModel();
+            model.Users =_ctx.GetUsers();
+
+            return View("Users",model);
+        }
         [HttpGet("/Login")]
         public IActionResult Login(){
             var model = new UserViewModel();
