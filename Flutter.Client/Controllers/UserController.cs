@@ -57,7 +57,7 @@ namespace Flutter.Client.Controllers
             model.UserName = Username;
             string PasswordDB = _ctx.UserPassword(Username);
             if(PasswordDB == Password){
-                return View("UserProfile");
+                return View("UserProfile",model);
             }
             else{
                 return View("SignUp",model);

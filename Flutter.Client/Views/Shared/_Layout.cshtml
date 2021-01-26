@@ -15,25 +15,27 @@
 <script type="text/javascript">
 
 </script>
+
 <body>
 
   @* example asp tag fo nav link <a asp-area="" asp-page="/Index">Home</a> *@
 
   <header>
     <nav class="navbar" role="navigation" aria-label="main navigation">
-      <input type="checkbox" id="toggler" role="button" class="toggler" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" />
+      <input type="checkbox" id="toggler" role="button" class="toggler" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample" />
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
           <img src="../bat (1).png">
         </a>
 
-        <label for="toggler" class="navbar-burger burger" >
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </label>
-  </div>
-        
+        <label for="toggler" class="navbar-burger burger">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </label>
+      </div>
+
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
@@ -59,8 +61,8 @@
       </div>
 
       <div class="navbar-end">
-        <h1 class="is-cust-font navbar-item" >
-          model.User ? User.uesername : Login to Post
+        <h1 class="is-cust-font navbar-item" id="Username">
+          Login to Post
         </h1>
 
         <div class="navbar-item">
