@@ -1,3 +1,5 @@
+
+
 @{
     ViewData["Title"] = "Profile";
 }
@@ -44,20 +46,25 @@
     <div class="column is-one-third">
         <div class="filters-container">
             <div class="columns is-centered">
-                <h1 class="is-size-1 is-weight-bold has-text-black">Name</h1>
+                <h1 class="is-size-1 is-weight-bold has-text-black">@Model.Name</h1>
                 <hr>
             </div>
             <div class="columns is-centered">
                 <div class="is-post">
                 <p>
+<<<<<<< HEAD
                   AboutMe text Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem id ullam
+=======
+                  @Model.AboutMe
+
+>>>>>>> 7e48d5b86a1d483cc2bf09ca19c10117ed26235a
                 </p>
                 </div>
                 <hr>
             </div>
             <div class="columns is-centered">
                 <p>
-                  Date Created: 
+                  Date Joined: @Model.DateCreated
 
                 </p>
                 <hr>
@@ -91,79 +98,26 @@
 
         </div>
     </div>
+
     <div class="column is-one-third is-post-container">
         <textarea class="textarea" placeholder="Your post here" id="PostText" onchange="UpdatePostTex()"></textarea>
         <button class="button is-Flutter" onclick="HandleText()">Post</button>
         <div class="is-post">
-            <strong>UserName</strong>
+          @if (@Model.Posts !- null)
+          {
+            @foreach (var post in @Model.Posts)
+            {
+            <strong>@post.UserID</strong>
             <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
-                mattis fermentum libero, non volutpat.
+                @post.Content
 
             </p>
             <button class="button is-Flutter">Comment</button>
             <button class="button is-Flutter">Like</button>
+            }
+          }
         </div>
-        <div class="is-post">
-            <strong>UserName</strong>
-            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
-                mattis fermentum libero, non volutpat.
 
-            </p>
-            <button class="button is-Flutter">Comment</button>
-            <button class="button is-Flutter">Like</button>
-        </div>
-        <div class="is-post">
-            <strong>UserName</strong>
-            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
-                mattis fermentum libero, non volutpat.
-
-            </p>
-            <button class="button is-Flutter">Comment</button>
-            <button class="button is-Flutter">Like</button>
-        </div>
-        <div class="is-post">
-            <strong>UserName</strong>
-            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
-                mattis fermentum libero, non volutpat.
-
-            </p>
-            <button class="button is-Flutter">Comment</button>
-            <button class="button is-Flutter">Like</button>
-        </div>
-        <div class="is-post">
-            <strong>UserName</strong>
-            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
-                mattis fermentum libero, non volutpat.
-
-            </p>
-            <button class="button is-Flutter">Comment</button>
-            <button class="button is-Flutter">Like</button>
-        </div>
-        <div class="is-post">
-            <strong>UserName</strong>
-            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
-                mattis fermentum libero, non volutpat.
-
-            </p>
-            <button class="button is-Flutter">Comment</button>
-            <button class="button is-Flutter">Like</button>
-        </div>
-        <div class="is-post">
-            <strong>UserName</strong>
-            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam
-                mattis fermentum libero, non volutpat.
-
-            </p>
-            <button class="button is-Flutter">Comment</button>
-            <button class="button is-Flutter">Like</button>
-        </div>
 
     </div>
 </div>
