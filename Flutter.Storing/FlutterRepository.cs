@@ -24,6 +24,10 @@ namespace Flutter.Storing
         public void AddUser(AUser user)
         {
             _ctx.Users.Add(user);
+            _ctx.SaveChanges(); 
+        }
+        public List<string> GetUsers(){
+             return _ctx.Users.Select(user => user.Name).ToList();
         }
     }
 }
