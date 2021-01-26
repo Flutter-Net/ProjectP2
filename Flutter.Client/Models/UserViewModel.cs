@@ -11,7 +11,7 @@ namespace Flutter.Client.Models
 
         public string Password {get;set;}
 
-        public DateTime DateCreated {get;}
+        public DateTime DateCreated {get; set; }
 
         public string AboutMe {get;set;}
 

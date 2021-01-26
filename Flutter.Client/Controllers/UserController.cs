@@ -64,7 +64,7 @@ namespace Flutter.Client.Controllers
             model.UserName = Username;
             string PasswordDB = _ctx.UserPassword(Username);
             if(PasswordDB == Password){
-                
+                model.DateCreated = _ctx.GetUser(Username).DateCreated;
                 return View("UserProfile",model);
             }
             else{

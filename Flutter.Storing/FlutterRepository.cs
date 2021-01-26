@@ -26,7 +26,11 @@ namespace Flutter.Storing
             _ctx.Posts.Add(post);
             _ctx.SaveChanges();
         }
-         
+
+        public AUser GetUser(string UserName)
+        {
+          return _ctx.Users.FirstOrDefault(u =>u.Name == UserName);
+        }
         public List<string> GetUsers()
         {
             return _ctx.Users.Select(user => user.Name).ToList();
