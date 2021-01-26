@@ -21,6 +21,12 @@ namespace Flutter.Storing
             _ctx.Users.Add(user);
             _ctx.SaveChanges();
         }
+         public void AddPost(Post post)
+        {
+            _ctx.Posts.Add(post);
+            _ctx.SaveChanges();
+        }
+         
         public List<string> GetUsers()
         {
             return _ctx.Users.Select(user => user.Name).ToList();
