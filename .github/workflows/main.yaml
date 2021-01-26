@@ -1,0 +1,54 @@
+defaults:
+  run:
+    working-directory: projectp2
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: dotnet restore
+      - run: dotnet build
+
+  test:
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: dotnet test
+
+  analyze:
+    needs: 
+      - build
+      - test
+    runs-on: ubuntu-20.04
+    env:
+      SONARCLOUD_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - run: dotnet tool install --global dotnet-sonarscanner
+      - run: |
+          dotnet sonarscanner begin /k:'Flutter-Net_ProjectP2' /o:'Flutter-Net' /d:sonar.host.url='https://sonarcloud.io/' /d:sonar.login=$SONARCLOUD_TOKEN
+          dotnet build
+          dotnet test
+          dotnet sonarscanner end /d:sonar.login=$SONARCLOUD_TOKEN
+
+  pack:
+    needs:
+      - build
+      - test
+    runs-on: ubuntu-20.04
+    env:
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+      DOCKER_USER: ${{ secrets.DOCKER_USER }}
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo $DOCKER_TOKEN | docker login -u $DOCKER_USER --password-stdin
+      - run: docker image build -f ../dockerfile -t flutterdemo ..
+      - run: docker image tag flutterdemo flutter2021/projectp2flutter
+      - run: docker image push flutter2021/projectp2flutter
+      - run: docker logout
+
+on: push
