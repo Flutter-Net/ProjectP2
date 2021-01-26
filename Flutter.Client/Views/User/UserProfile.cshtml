@@ -1,5 +1,3 @@
-
-
 @{
     ViewData["Title"] = "Profile";
     Layout = "_LoggedInLayOut";
@@ -10,7 +8,7 @@
 <script type="text/javascript">
 
     let PostText = ""
-    const BadWords = ['shit', 'ass', 'fuck', 'gay', 'damn', 'bastard', 'bitch', 'cunt', 'poop', 'nigg', 'cock','dick', 'retard', 'pussy']
+    const BadWords = ['shit', 'ass', 'fuck', 'gay', 'damn', 'bastard', 'bitch', 'cunt', 'poop', 'nigg', 'cock', 'dick', 'retard', 'pussy']
 
 
     const HandleText = () => {
@@ -49,30 +47,31 @@
     <div class="column is-one-third">
         <div class="filters-container">
             <div class="columns is-centered">
-                <h1 class="is-size-1 is-weight-bold has-text-black"id="LoggedIn">
-                     @*Model.UserName*@
-                    </h1>
+                <h1 class="is-size-1 is-weight-bold has-text-black" id="LoggedIn">
+                    @* @Model.UserName *@
+                </h1>
                 <hr>
             </div>
             <div class="columns is-centered">
                 <div class="is-post">
-                <p>
-                  @* @Model.AboutMe *@
+                    <p>
+                        @* @Model.AboutMe *@
 
-
-                </p>
+                    </p>
                 </div>
                 <hr>
             </div>
             <div class="columns is-centered">
                 <p>
-                  @*Date Joined: @Model.DateCreated *@
+                    @* Date Joined: @Model.DateCreated *@
 
                 </p>
                 <hr>
             </div>
-
-          <div class="filters-container">
+        </div>
+        <br>
+        <br>
+        <div class="filters-container">
             <div class="columns is-centered">
                 <h1 class="is-size-1 is-weight-bold has-text-black">View:</h1>
                 <hr>
@@ -105,8 +104,8 @@
         <textarea class="textarea" placeholder="Your post here" id="PostText" onchange="UpdatePostTex()"></textarea>
         <button class="button is-Flutter" onclick="HandleText()">Post</button>
         <div class="is-post">
-          @* @if (@Model.Posts != null) *@
-          @* { *@
+            @* @if (@Model.Posts != null) *@
+            @* { *@
             @* @foreach (var post in @Model.Posts) *@
             @* { *@
             @* <strong>@post.UserId</strong> *@
@@ -117,7 +116,7 @@
             <button class="button is-Flutter">Comment</button>
             <button class="button is-Flutter">Like</button>
             @* } *@
-          @* } *@
+            @* } *@
         </div>
 
 
