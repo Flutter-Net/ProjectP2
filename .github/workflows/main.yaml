@@ -1,6 +1,6 @@
 defaults:
   run:
-    working-directory: projectp2
+    working-directory: ProjectP2
 
 jobs:
   build:
