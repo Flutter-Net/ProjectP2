@@ -10,13 +10,10 @@ namespace Flutter.Domain.Models
         public string Password { get; set; }
         public DateTime DateCreated { get; set; }
         public List<Post> Posts { get; set; }
-
-        public string AboutMe { get; set; }
         public AUser()
         {
             DateCreated = DateTime.Now;
             Posts = new List<Post>();
-            AboutMe = string.Empty;
         }
         public AUser(string inputName, string inputPass)
         {
@@ -24,7 +21,6 @@ namespace Flutter.Domain.Models
             Password = inputPass;
             DateCreated = DateTime.Now;
             Posts = new List<Post>();
-            AboutMe = string.Empty;
         }
         public void AddPost(Post ToBeAdded)
         {

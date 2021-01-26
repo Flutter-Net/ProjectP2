@@ -8,6 +8,8 @@ namespace Flutter.Storing
         public DbSet<AUser> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
 
+        public FlutterContext(){}
+
         public DbSet<Tag> Tags {get;set;}
         public FlutterContext(DbContextOptions<FlutterContext> options) : base(options) { }
 
@@ -18,9 +20,14 @@ namespace Flutter.Storing
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //build entities here
-            builder.Entity<AUser>().HasKey(u => u.EntityId);
-            builder.Entity<Post>().HasKey(p => p.EntityId);
-            builder.Entity<Tag>().HasKey(t => t.EntityId);
+            builder.Entity<AUser>().HasKey(user => user.EntityId);
+            builder.Entity<AUser>().HasMany(user => user.Posts);
+
+            builder.Entity<Post>().HasKey(post => post.EntityId);
+            builder.Entity<Post>().HasMany(post => post.TagIds).WithMany(tag => tag.TaggedPosts);
+
+            builder.Entity<Tag>().HasKey(tag => tag.EntityId);
+            
         }
     }
 }
