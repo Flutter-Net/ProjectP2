@@ -12,7 +12,7 @@ namespace Flutter.Client.Controllers
 
     public class PostController : Controller
     {
-        
+
 
         [HttpGet]
         public IActionResult Post()
@@ -20,6 +20,6 @@ namespace Flutter.Client.Controllers
             return View("Post");
         }
 
-      
+
     }
 }
