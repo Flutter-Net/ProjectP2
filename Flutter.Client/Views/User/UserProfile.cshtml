@@ -4,6 +4,8 @@
     ViewData["Title"] = "Profile";
 }
 
+@model Flutter.Client.Models.UserViewModel 
+
 <script type="text/javascript">
 
     let PostText = ""
@@ -46,25 +48,23 @@
     <div class="column is-one-third">
         <div class="filters-container">
             <div class="columns is-centered">
-                <h1 class="is-size-1 is-weight-bold has-text-black">@Model.Name</h1>
+                <h1 class="is-size-1 is-weight-bold has-text-black">
+                    @* @Model.UserName *@
+                    </h1>
                 <hr>
             </div>
             <div class="columns is-centered">
                 <div class="is-post">
                 <p>
-<<<<<<< HEAD
-                  AboutMe text Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem id ullam
-=======
-                  @Model.AboutMe
+                  @* @Model.AboutMe *@
 
->>>>>>> 7e48d5b86a1d483cc2bf09ca19c10117ed26235a
                 </p>
                 </div>
                 <hr>
             </div>
             <div class="columns is-centered">
                 <p>
-                  Date Joined: @Model.DateCreated
+                  @* Date Joined: @Model.DateCreated *@
 
                 </p>
                 <hr>
@@ -103,19 +103,19 @@
         <textarea class="textarea" placeholder="Your post here" id="PostText" onchange="UpdatePostTex()"></textarea>
         <button class="button is-Flutter" onclick="HandleText()">Post</button>
         <div class="is-post">
-          @if (@Model.Posts !- null)
-          {
-            @foreach (var post in @Model.Posts)
-            {
-            <strong>@post.UserID</strong>
+          @* @if (@Model.Posts != null) *@
+          @* { *@
+            @* @foreach (var post in @Model.Posts) *@
+            @* { *@
+            @* <strong>@post.UserId</strong> *@
             <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
-                @post.Content
+                @* @post.Content *@
 
             </p>
             <button class="button is-Flutter">Comment</button>
             <button class="button is-Flutter">Like</button>
-            }
-          }
+            @* } *@
+          @* } *@
         </div>
 
 

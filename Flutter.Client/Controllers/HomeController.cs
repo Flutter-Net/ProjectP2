@@ -25,12 +25,7 @@ namespace Flutter.Client.Controllers
         {
             return View();
         }
-        [HttpGet("/UserHome")]
-        public IActionResult UserHome()
-        {
-            return View("UserProfile");
-        }
-
+        
         public IActionResult Privacy()
         {
             return View();

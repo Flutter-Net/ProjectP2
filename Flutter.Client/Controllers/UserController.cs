@@ -44,6 +44,25 @@ namespace Flutter.Client.Controllers
 
             return View("Users",model);
         }
+        [HttpGet("/Login")]
+        public IActionResult Login(){
+            var model = new UserViewModel();
 
+            return View("Login",model);
+        }
+        [HttpGet("/LoggingIn")]
+        public IActionResult LoggingIn(string Username, string Password)
+        {
+            var model = new UserViewModel();
+            model.UserName = Username;
+            string PasswordDB = _ctx.UserPassword(Username);
+            if(PasswordDB == Password){
+                return View("UserProfile");
+            }
+            else{
+                return View("SignUp",model);
+            }
+
+        }
     }
 }

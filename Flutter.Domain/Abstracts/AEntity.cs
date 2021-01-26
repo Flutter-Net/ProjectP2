@@ -5,7 +5,7 @@ namespace Flutter.Domain.Abstracts
         public long EntityId { get; set; }
         public AEntity()
         {
-            EntityId = System.DateTime.Now.Ticks;
+           
         }
     }
 }
