@@ -96,6 +96,13 @@
                 <button class="button is-Flutter is-long">By Date</button>
                 <hr>
             </div>
+            <div class="columns is-centered">
+                <form action="">
+                <input type="text" class="input"placeholder="Tag Name">
+                <button class="button is-Flutter is-long">By Tag Name</button>
+                </form>
+                <hr>
+            </div>
 
         </div>
     </div>
@@ -104,6 +111,7 @@
       <form asp-controller="Post" asp-action="AddPost" method="POST">
         <textarea class="textarea" asp-for="Content" placeholder="Your post here" id="PostText" onchange="UpdatePostTex()"></textarea>
         <button class="button is-Flutter" onclick="HandleText()">Post</button>
+        <input type="text" asp-for="Tag" placeholder="Add a Tag here">
       </form>
         @if (@Model.Posts != null){
           @foreach (var post in @Model.Posts)
@@ -112,10 +120,18 @@
              <strong>@post.UserId</strong>
             <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
                  @post.Content
-
             </p>
             <button class="button is-Flutter">Comment</button>
             <button class="button is-Flutter">Like</button>
+            <h4>Tags:</h4>
+            <p>
+                @if(@post.TagIds != null){
+                    @foreach (var tag in @post.TagIds)
+                    {
+                        @tag.TagName; 
+                    }
+                }
+            </p>
         </div>
         }
         }

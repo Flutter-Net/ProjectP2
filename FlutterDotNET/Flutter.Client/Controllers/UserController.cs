@@ -54,7 +54,7 @@ namespace Flutter.Client.Controllers
         [HttpGet("/Login")]
         public IActionResult Login(){
             var model = new UserViewModel();
-            model.UserObjects = _ctx.GetUserObj();
+            
 
             return View("Login",model);
         }

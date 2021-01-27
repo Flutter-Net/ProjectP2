@@ -29,14 +29,21 @@ namespace Flutter.Client.Controllers
         }
 
         [HttpPost("/AddPost")]
-        public IActionResult AddPost(string content)
+        public IActionResult AddPost(string content,string Tag)
         {
           AUser user = _ctx.GetUser(TempData["currentuser"].ToString());
           TempData.Keep("currentuser");
           Post NewPost = new Post(user.EntityId, content);
+
+          if(Tag!=null){
+            Tag NewTag = new Tag(Tag);
+            _ctx.AddTag(NewTag);
+            NewPost.TagIds.Add(NewTag);
+          }
+
           _ctx.AddPost(NewPost);
           var model = new UserViewModel();
-          model.UserName = user.Name;
+                    model.UserName = user.Name;
           model.DateCreated = user.DateCreated;
           model.Posts = _ctx.GetPosts(user.EntityId);
           return View("UserProfile", model);
