@@ -1,7 +1,7 @@
 @model Flutter.Client.Models.UserViewModel
 <div class="column is-half is-post-container">
 @foreach ( string item in Model.Users){
-    <form asp-controller="User" asp-action="LoggingIn" method="GET">
+    <form asp-controller="User" asp-action="LoggingIn" method="POST">
             <div class="field">
                 <label class="label">@item</label>
                 <div class="control">

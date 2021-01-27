@@ -54,10 +54,28 @@ namespace Flutter.Client.Controllers
         [HttpGet("/Login")]
         public IActionResult Login(){
             var model = new UserViewModel();
+            
 
             return View("Login",model);
         }
-        [HttpGet("/LoggingIn")]
+        
+        [HttpGet("/UserProfile")]
+        public IActionResult UserProfile(){
+             var model = new UserViewModel();
+          var user = TempData["currentuser"].ToString();
+          TempData.Keep("currentuser");
+          model.UserName = user;
+          long id = _ctx.GetUserId(user);
+
+          model.Posts = _ctx.GetPosts(id);
+           
+
+
+            
+            return View("UserProfile",model);
+        }
+
+        [HttpPost("/LoggingIn")]
         public IActionResult LoggingIn(string Username, string Password)
         {
             var model = new UserViewModel();
@@ -68,7 +86,7 @@ namespace Flutter.Client.Controllers
                 model.Posts = _ctx.GetPosts(user.EntityId);
                 TempData["currentuser"] = Username;
                 model.DateCreated = _ctx.GetUser(Username).DateCreated;
-                return View("UserProfile",model);
+                return RedirectToAction("UserProfile",model);
             }
             else{
                 return View("SignUp",model);

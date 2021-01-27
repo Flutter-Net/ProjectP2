@@ -23,6 +23,9 @@ namespace Flutter.Client.Models
 
         public string Content { get; set; }
 
+        public string Tag {get;set;}
+
+        public List<string> PostTags {get;set;}
     }
 
 }
