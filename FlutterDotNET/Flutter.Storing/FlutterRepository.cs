@@ -27,7 +27,10 @@ namespace Flutter.Storing
             _ctx.SaveChanges();
         }
 
-
+        public List<Post> GetPosts(long UserID)
+        {
+           return _ctx.Posts.Where(p => p.UserId == UserID).ToList();
+        }
 
         public AUser GetUser(string UserName)
         {

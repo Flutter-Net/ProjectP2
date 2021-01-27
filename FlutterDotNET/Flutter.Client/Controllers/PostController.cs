@@ -38,6 +38,7 @@ namespace Flutter.Client.Controllers
           var model = new UserViewModel();
           model.UserName = user.Name;
           model.DateCreated = user.DateCreated;
+          model.Posts = _ctx.GetPosts(user.EntityId);
           return View("UserProfile", model);
         }
 

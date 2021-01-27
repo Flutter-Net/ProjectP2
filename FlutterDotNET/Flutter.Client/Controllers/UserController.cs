@@ -64,6 +64,8 @@ namespace Flutter.Client.Controllers
             model.UserName = Username;
             string PasswordDB = _ctx.UserPassword(Username);
             if(PasswordDB == Password){
+                AUser user = _ctx.GetUser(Username);
+                model.Posts = _ctx.GetPosts(user.EntityId);
                 TempData["currentuser"] = Username;
                 model.DateCreated = _ctx.GetUser(Username).DateCreated;
                 return View("UserProfile",model);
