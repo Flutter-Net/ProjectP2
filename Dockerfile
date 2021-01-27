@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 as base
 
 WORKDIR /workspace
-COPY FlutterDotNet .
+COPY FlutterDotNET .
 RUN dotnet build
 RUN dotnet publish -c Release -o out Flutter.Client/Flutter.Client.csproj
 
