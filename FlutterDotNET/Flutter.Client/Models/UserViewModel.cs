@@ -21,6 +21,8 @@ namespace Flutter.Client.Models
 
         public List<string> Users {get;set;}
 
+        public IEnumerable<AUser> UserObjects{get;set;}
+
     }
 
 }

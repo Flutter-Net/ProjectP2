@@ -35,6 +35,9 @@ namespace Flutter.Storing
         {
             return _ctx.Users.Select(user => user.Name).ToList();
         }
+        public IEnumerable<AUser> GetUserObj(){
+            return _ctx.Users.ToList();
+        }
 
         public string UserPassword(string UserName)
         {

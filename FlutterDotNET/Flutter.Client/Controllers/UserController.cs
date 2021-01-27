@@ -54,10 +54,17 @@ namespace Flutter.Client.Controllers
         [HttpGet("/Login")]
         public IActionResult Login(){
             var model = new UserViewModel();
+            model.UserObjects = _ctx.GetUserObj();
 
             return View("Login",model);
         }
-        [HttpGet("/LoggingIn")]
+        
+        [HttpGet("/UserProfile")]
+        public IActionResult UserProfile(UserViewModel model){
+            return View("UserProfile",model);
+        }
+
+        [HttpPost("/LoggingIn")]
         public IActionResult LoggingIn(string Username, string Password)
         {
             var model = new UserViewModel();
@@ -65,7 +72,7 @@ namespace Flutter.Client.Controllers
             string PasswordDB = _ctx.UserPassword(Username);
             if(PasswordDB == Password){
                 model.DateCreated = _ctx.GetUser(Username).DateCreated;
-                return View("UserProfile",model);
+                return RedirectToAction("UserProfile",model);
             }
             else{
                 return View("SignUp",model);
