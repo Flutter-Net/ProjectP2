@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Flutter.Domain.Models;
@@ -28,28 +29,16 @@ namespace Flutter.Storing
         }
         public void AddTag(Tag tag)
         {
-            var IsTag = _ctx.Tags.FirstOrDefault(dbtag => dbtag.TagName == tag.TagName);
-
-            if (IsTag != null)
-            {
                 _ctx.Tags.Add(tag);
                 _ctx.SaveChanges();
-            }
-
         }
         public Tag GetTag(string Name)
         {
             return _ctx.Tags.FirstOrDefault(tag => tag.TagName == Name);
         }
-        public List<string> GetPostsTags(long PostId)
+        public List<Tag> GetPostsTags(long PostId)
         {
-            var Post = _ctx.Posts.FirstOrDefault(DbPost => DbPost.EntityId == PostId);
-            List<string> Tags = new List<string>();
-            foreach (var Tag in Post.TagIds)
-            {
-                Tags.Add(Tag.TagName);
-            }
-            return Tags;
+           return  _ctx.Tags.Where(t =>t.EntityId == PostId).ToList();
         }
         public List<long> GetPostIds(long Id)
         {
@@ -72,6 +61,11 @@ namespace Flutter.Storing
         public AUser GetUser(string UserName)
         {
             return _ctx.Users.FirstOrDefault(u => u.Name == UserName);
+        }
+        public long GetUserId(string UserName)
+        {
+            var user = _ctx.Users.FirstOrDefault(u => u.Name == UserName);
+            return user.EntityId;
         }
         public List<string> GetUsers()
         {

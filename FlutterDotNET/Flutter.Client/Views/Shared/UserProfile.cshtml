@@ -117,8 +117,7 @@
           @foreach (var post in @Model.Posts)
           {
         <div class="is-post">
-             <strong>@post.UserId</strong>
-            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
+                        <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
                  @post.Content
             </p>
             <button class="button is-Flutter">Comment</button>
@@ -129,6 +128,7 @@
                     @foreach (var tag in @post.TagIds)
                     {
                         @tag.TagName; 
+                        
                     }
                 }
             </p>

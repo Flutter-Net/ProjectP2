@@ -60,7 +60,18 @@ namespace Flutter.Client.Controllers
         }
         
         [HttpGet("/UserProfile")]
-        public IActionResult UserProfile(UserViewModel model){
+        public IActionResult UserProfile(){
+             var model = new UserViewModel();
+          var user = TempData["currentuser"].ToString();
+          TempData.Keep("currentuser");
+          model.UserName = user;
+          long id = _ctx.GetUserId(user);
+
+          model.Posts = _ctx.GetPosts(id);
+           
+
+
+            
             return View("UserProfile",model);
         }
 
