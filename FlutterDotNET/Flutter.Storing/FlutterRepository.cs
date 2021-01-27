@@ -27,6 +27,11 @@ namespace Flutter.Storing
             _ctx.SaveChanges();
         }
 
+        public List<Post> GetPosts(long UserID)
+        {
+           return _ctx.Posts.Where(p => p.UserId == UserID).ToList();
+        }
+
         public AUser GetUser(string UserName)
         {
           return _ctx.Users.FirstOrDefault(u =>u.Name == UserName);
@@ -44,5 +49,6 @@ namespace Flutter.Storing
             var user = _ctx.Users.FirstOrDefault(u => u.Name == UserName);
             return user.Password;
         }
+
     }
 }

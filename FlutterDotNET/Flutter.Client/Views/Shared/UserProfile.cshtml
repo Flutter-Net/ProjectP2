@@ -63,7 +63,7 @@
             </div>
             <div class="columns is-centered">
                 <p>
-                    Date Joined: @Model.DateCreated 
+                    Date Joined: @Model.DateCreated
 
                 </p>
                 <hr>
@@ -101,23 +101,24 @@
     </div>
 
     <div class="column is-one-third is-post-container">
-        <textarea class="textarea" placeholder="Your post here" id="PostText" onchange="UpdatePostTex()"></textarea>
+      <form asp-controller="Post" asp-action="AddPost" method="POST">
+        <textarea class="textarea" asp-for="Content" placeholder="Your post here" id="PostText" onchange="UpdatePostTex()"></textarea>
         <button class="button is-Flutter" onclick="HandleText()">Post</button>
+      </form>
+        @if (@Model.Posts != null){
+          @foreach (var post in @Model.Posts)
+          {
         <div class="is-post">
-            @* @if (@Model.Posts != null) *@
-            @* { *@
-            @* @foreach (var post in @Model.Posts) *@
-            @* { *@
-            @* <strong>@post.UserId</strong> *@
+             <strong>@post.UserId</strong>
             <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
-                @* @post.Content *@
+                 @post.Content
 
             </p>
             <button class="button is-Flutter">Comment</button>
             <button class="button is-Flutter">Like</button>
-            @* } *@
-            @* } *@
         </div>
+        }
+        }
 
 
     </div>
