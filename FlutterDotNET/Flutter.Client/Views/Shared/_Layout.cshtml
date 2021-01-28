@@ -12,9 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<script type="text/javascript">
 
-</script>
+
 
 <body>
 
@@ -84,11 +83,37 @@
   </main>
 
 
+  <button id="test">test</button>
+
+
   <footer>
 
     &copy; 2021 - FlutterPractice - <a asp-area="" asp-page="/Privacy">Privacy</a>
-
   </footer>
+<script type="text/javascript">
+const button = document.querySelector("#test")
+const queryURL =  "/Tags/66"
+
+button.addEventListener('click',function(){
+let query = `${queryURL}`
+ajax(query)
+
+})
+
+function pass(res){
+  res.json().then(function(data){
+    console.log(data)
+  })
+}
+function fail(res){
+  console.error(res)
+}
+function ajax(input){
+  fetch(input).then(pass,fail)
+}
+</script>
+
+
 
   <script src="~/lib/jquery/dist/jquery.min.js"></script>
   <script src="~/js/site.js" asp-append-version="true"></script>

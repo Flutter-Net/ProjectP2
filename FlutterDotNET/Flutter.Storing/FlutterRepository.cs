@@ -29,16 +29,36 @@ namespace Flutter.Storing
         }
         public void AddTag(Tag tag)
         {
-                _ctx.Tags.Add(tag);
-                _ctx.SaveChanges();
+            _ctx.Tags.Add(tag);
+            _ctx.SaveChanges();
         }
         public Tag GetTag(string Name)
         {
             return _ctx.Tags.FirstOrDefault(tag => tag.TagName == Name);
         }
+        public Post GetPost(long id)
+        {
+            return _ctx.Posts.FirstOrDefault(post => post.EntityId == id);
+        }
         public List<Tag> GetPostsTags(long PostId)
         {
-           return  _ctx.Tags.Where(t =>t.EntityId == PostId).ToList();
+            var post = _ctx.Posts.Include(p => p.TagIds).FirstOrDefault(p => p.EntityId == PostId);
+            List<Tag> output = new List<Tag>();
+            foreach (Tag tag in post.TagIds)
+            {
+                output.Add(tag);
+            }
+            return output;
+        }
+        public List<string> GetPostsTagNames(long PostId)
+        {
+            var tags = _ctx.Tags.Where(t => t.EntityId == PostId);
+            List<string> names = new List<string>();
+            foreach (Tag tag in tags)
+            {
+                names.Add(tag.TagName);
+            }
+            return names;
         }
         public List<long> GetPostIds(long Id)
         {
