@@ -1,7 +1,7 @@
 defaults:
   run:
-    working-directory: FlutterDotNET
-
+    working-directory: FlutterDotNETWithAPI/FlutterAPI
+    
 jobs:
   build:
     name: build
