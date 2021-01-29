@@ -82,6 +82,10 @@ namespace Flutter.Storing
         {
             return _ctx.Users.FirstOrDefault(u => u.Name == UserName);
         }
+        public List<AUser> GetAllUsers()
+        {
+            return _ctx.Users.ToList();
+        }
         public long GetUserId(string UserName)
         {
             var user = _ctx.Users.FirstOrDefault(u => u.Name == UserName);
