@@ -5,43 +5,6 @@
 
 @model Flutter.Client.Models.UserViewModel
 
-<script type="text/javascript">
-
-    let PostText = ""
-    const BadWords = ['shit', 'ass', 'fuck', 'gay', 'damn', 'bastard', 'bitch', 'cunt', 'poop', 'nigg', 'cock', 'dick', 'retard', 'pussy']
-
-
-    const HandleText = () => {
-
-
-        let str = PostText.toLowerCase()
-        let bad = false
-        for (let i = 0; i < BadWords.length; i++) {
-            if (str.includes(BadWords[i])) {
-                bad = true
-            }
-        }
-        if (bad === true) {
-            alert('Post contains inappropriate content')
-
-        }
-        else {
-            Post()
-        }
-
-    }
-
-    const UpdatePostTex = () => {
-        PostText = document.getElementById("PostText").value;
-    }
-
-
-    const Post = () => {
-        alert(PostText)
-        console.log(PostText)
-    }
-
-</script>
 
 <div class="columns">
     <div class="column is-one-third">
@@ -110,7 +73,7 @@
     <div class="column is-one-third is-post-container">
       <form asp-controller="Post" asp-action="AddPost" method="POST">
         <textarea class="textarea" asp-for="Content" placeholder="Your post here" id="PostText" onchange="UpdatePostTex()"></textarea>
-        <button class="button is-Flutter" onclick="HandleText()">Post</button>
+        <button class="button is-Flutter" id="postButton">Post</button>
         <input type="text" asp-for="Tag" placeholder="Add a Tag here">
       </form>
         @if (@Model.Posts != null){
