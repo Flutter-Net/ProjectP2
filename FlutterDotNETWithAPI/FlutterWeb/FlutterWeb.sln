@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlutterWeb.Client", "FlutterWeb.Client.csproj", "{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlutterWeb.Client", "FlutterWeb.Client\FlutterWeb.Client.csproj", "{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlutterWeb.Client", "FlutterWeb.Client\FlutterWeb.Client.csproj", "{2EBF600F-E883-4184-A541-1945DE884A3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,29 +18,17 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}.Debug|x64.Build.0 = Debug|Any CPU
-		{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}.Debug|x86.Build.0 = Debug|Any CPU
-		{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}.Release|x64.ActiveCfg = Release|Any CPU
-		{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}.Release|x64.Build.0 = Release|Any CPU
-		{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}.Release|x86.ActiveCfg = Release|Any CPU
-		{9DF6E61B-52AF-4BB0-8139-CC96D8C8DE03}.Release|x86.Build.0 = Release|Any CPU
-		{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}.Debug|x64.Build.0 = Debug|Any CPU
-		{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}.Debug|x86.Build.0 = Debug|Any CPU
-		{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}.Release|x64.ActiveCfg = Release|Any CPU
-		{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}.Release|x64.Build.0 = Release|Any CPU
-		{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}.Release|x86.ActiveCfg = Release|Any CPU
-		{B39D1A17-138A-4610-A9B2-D2EB3D7AF405}.Release|x86.Build.0 = Release|Any CPU
+		{2EBF600F-E883-4184-A541-1945DE884A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EBF600F-E883-4184-A541-1945DE884A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EBF600F-E883-4184-A541-1945DE884A3C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2EBF600F-E883-4184-A541-1945DE884A3C}.Debug|x64.Build.0 = Debug|Any CPU
+		{2EBF600F-E883-4184-A541-1945DE884A3C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2EBF600F-E883-4184-A541-1945DE884A3C}.Debug|x86.Build.0 = Debug|Any CPU
+		{2EBF600F-E883-4184-A541-1945DE884A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EBF600F-E883-4184-A541-1945DE884A3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EBF600F-E883-4184-A541-1945DE884A3C}.Release|x64.ActiveCfg = Release|Any CPU
+		{2EBF600F-E883-4184-A541-1945DE884A3C}.Release|x64.Build.0 = Release|Any CPU
+		{2EBF600F-E883-4184-A541-1945DE884A3C}.Release|x86.ActiveCfg = Release|Any CPU
+		{2EBF600F-E883-4184-A541-1945DE884A3C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
