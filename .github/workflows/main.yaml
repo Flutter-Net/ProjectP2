@@ -1,22 +1,22 @@
 defaults:
   run:
-    working-directory: FlutterDotNETWithAPI/FlutterAPI
+    working-directory: FlutterDotNETWithAPI
     
 jobs:
   build:
-    name: build
+    name: buildAPI
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: dotnet restore
-      - run: dotnet build
+      - run: dotnet restore ./FlutterAPI/FlutterAPI.sln
+      - run: dotnet build ./FlutterAPI/FlutterAPI.sln
 
   test:
-    needs: build
+    needs: buildAPI
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: dotnet test
+      - run: dotnet test ./FlutterAPI/Flutter.Testing/Flutter.Testing.csproj
 
   analyze:
     needs: 
