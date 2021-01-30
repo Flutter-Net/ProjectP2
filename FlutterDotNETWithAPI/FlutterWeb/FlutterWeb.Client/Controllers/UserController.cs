@@ -16,6 +16,10 @@ namespace Flutter.Client.Controllers
     public class UserController : Controller
     {
 
+        private string apiUrl = "http://localhost:57661";
+
+        private HttpClient _http = new HttpClient();
+
 
         private readonly FlutterRepository _ctx;
 
@@ -60,19 +64,24 @@ namespace Flutter.Client.Controllers
         }
         
         [HttpGet("/UserProfile")]
-        public IActionResult UserProfile(){
-             var model = new UserViewModel();
+        public async IActionResult UserProfile()
+        {
+          var response = await _http.GetAsync(apiUrl);
+
+          if (response.IsSuccessCode)
+          {
+            var content = Json.Convert<UserViewModel>(await response.Content.ReadStringAsync);
+          }
+          
+          var model = new UserViewModel();
           var user = TempData["currentuser"].ToString();
           TempData.Keep("currentuser");
           model.UserName = user;
           long id = _ctx.GetUserId(user);
 
           model.Posts = _ctx.GetPosts(id);
-           
-
-
-            
-            return View("UserProfile",model);
+                     
+          return View("UserProfile",content);
         }
 
         [HttpPost("/LoggingIn")]

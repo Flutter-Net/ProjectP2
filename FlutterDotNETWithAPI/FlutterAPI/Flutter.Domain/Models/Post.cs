@@ -9,7 +9,7 @@ namespace Flutter.Domain.Models
     {
         public long UserId { get; set; }
         public DateTime DatePosted { get; set; }
-        public List<Tag> TagIds { get; set; }
+        public ICollection<Tag> TagIds { get; set; }
         public string Content { get; set; }
         public long LikeScore { get; set; }
         public long CommentOfId { get; set; }

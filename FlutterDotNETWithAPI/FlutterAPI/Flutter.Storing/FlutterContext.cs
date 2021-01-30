@@ -28,7 +28,7 @@ namespace Flutter.Storing
             builder.Entity<Post>().HasMany(post => post.TagIds).WithMany(tag => tag.TaggedPosts);
 
             builder.Entity<Tag>().HasKey(tag => tag.EntityId);
-
+            builder.Entity<Tag>().HasMany(tag => tag.TaggedPosts).WithMany(post => post.TagIds);
         }
     }
 }
