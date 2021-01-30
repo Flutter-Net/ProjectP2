@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Flutter.Storing;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,7 @@ namespace Flutter.Client
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Flutter.Client", Version = "v1" });
             });
+            services.AddDbContext<FlutterContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

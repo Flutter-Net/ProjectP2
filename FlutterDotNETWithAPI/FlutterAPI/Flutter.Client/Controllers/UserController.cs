@@ -10,33 +10,27 @@ using Flutter.Storing;
 
 namespace Flutter.Client.Controllers
 {
-  [ApiController]
-  [Route("[controller]")]
-  public class UserController : ControllerBase
-  {
-    private readonly FlutterRepository _ctx;
+    [ApiController]
+    [Route("[controller]")]
+    public class UserController : ControllerBase
+    {
+        private readonly FlutterContext _ctx;
 
-        public UserController(FlutterRepository context)
+        public UserController(FlutterContext context)
         {
             _ctx = context;
         }
 
 
-    [HttpGet]
-    public async Task<IActionResult> Get()
-    {
-      var users = _ctx.GetAllUsers();
+        [HttpGet("/users")]
+        public async Task<IActionResult> Get()
+        {
+            var users = _ctx.Users.ToList();
 
-      return await Task.FromResult(Ok(users));
+            return await Task.FromResult(Ok(users));
 
+        }
+        
     }
-  [HttpGet("/User/{id}")]
-  public async Task<IActionResult> User(string id)
-  {
-      var user = _ctx.GetUser(id);
-
-      return await Task.FromResult(Ok(user));
-  }
-  }
 }
 

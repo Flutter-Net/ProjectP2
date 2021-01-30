@@ -16,7 +16,7 @@ namespace Flutter.Storing
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseSqlServer();
+            builder.UseSqlServer("Server=tcp:flutter.database.windows.net,1433;Initial Catalog=FlutterDb;Persist Security Info=False;User ID=sqladmin;Password=pass123!");
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
