@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Flutter.Domain.Models;
 using Flutter.Storing;
 using Microsoft.EntityFrameworkCore;
+using Flutter.Client.Models;
 
 namespace Flutter.Client.Controllers
 {
@@ -41,12 +42,11 @@ namespace Flutter.Client.Controllers
         [HttpGet("/user/{name}/posts")]
         public IActionResult GetUserPosts(string name)
         {
-          var user = _ctx.Users.FirstOrDefault(user => user.Name == name);
-          var posts = _ctx.Posts.Where( post => post.UserId == user.EntityId);
+            var user = _ctx.Users.FirstOrDefault(user => user.Name == name);
+            var posts = _ctx.Posts.Where(post => post.UserId == user.EntityId);
             return Ok(posts);
         }
-
-        [HttpGet("/posts")]
+        [HttpGet("/post/posts")]
         public IActionResult GetPosts()
         {
             var posts = _ctx.Posts.ToList();
@@ -59,6 +59,18 @@ namespace Flutter.Client.Controllers
             var post = _ctx.Posts.FirstOrDefault(post => post.EntityId == id);
 
             return Ok(post);
+        }
+
+        [HttpGet("/post/Tags/{id}")]
+        public IActionResult GetPostTags(long id)
+        {
+            var post = _ctx.Posts.FirstOrDefault(p => p.EntityId == id);
+            var output = post.TagIds;
+            foreach (var tag in post.TagIds)
+            {
+                output.Add(tag);
+            }
+            return Ok(output);
         }
 
         [HttpGet("/Tags")]
@@ -76,16 +88,15 @@ namespace Flutter.Client.Controllers
 
             return Ok(tag);
         }
-        [HttpGet("/Post/Tags/{id}")]
-        public IActionResult GetPostTags(long id)
+
+        [HttpPost]
+        public IActionResult AddPost(PostViewModel model)
         {
-            var post = _ctx.Posts.Include(p => p.TagIds).FirstOrDefault(p => p.EntityId == id);
-            List<Tag> output = new List<Tag>();
-            foreach (Tag tag in post.TagIds)
-            {
-                output.Add(tag);
-            }
-            return Ok(output);
+            Post ToBeAdded = new Post(model.UserId, model.Content, model.CommentOf);
+            _ctx.Posts.Add(ToBeAdded);
+            _ctx.SaveChanges();
+
+            return Ok();
         }
     }
 }
