@@ -9,6 +9,7 @@ using FlutterWeb.Client.Models;
 
 namespace FlutterWeb.Client.Controllers
 {
+    [Route("")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,7 +18,7 @@ namespace FlutterWeb.Client.Controllers
         {
             _logger = logger;
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
