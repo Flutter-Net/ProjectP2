@@ -46,7 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo $DOCKER_TOKEN | docker login -u $DOCKER_USER --password-stdin
-      - run: docker image build -f ../../Dockerfile -t flutterdemo ..
+      - run: docker image build -f ../../Dockerfile -t flutterdemo .
       - run: docker image tag flutterdemo flutter2021/projectp2flutter:flutterdemo
       - run: docker push flutter2021/projectp2flutter:flutterdemo
       - run: docker logout
