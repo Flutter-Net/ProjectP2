@@ -1,6 +1,6 @@
 using System;
 
-namespace Flutter.Client.Models
+namespace FlutterWeb.Client.Models
 {
     public class ErrorViewModel
     {

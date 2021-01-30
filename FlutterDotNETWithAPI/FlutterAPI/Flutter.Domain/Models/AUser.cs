@@ -30,6 +30,5 @@ namespace Flutter.Domain.Models
         {
             Posts.Remove(ToBeRemoved);
         }
-
     }
 }

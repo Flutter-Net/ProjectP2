@@ -1,147 +1,71 @@
-﻿.is-Flutter{
-  background-color: blueviolet !important;
-  color: antiquewhite !important;
-}
-.is-Flutter:hover{
-  background-color: rgb(209, 28, 118) !important;
-  color: black!important;
-}
-.is-FlutterLight{
-  background-color: pink !important;
-  color:black!important;
-}
-.is-FlutterLight:hover{
-  background-color: rgb(209, 28, 118) !important;
-  color: black!important;
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
 }
 
-ul.list{
-  color:black !important;
-  font-size: large;
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
 }
-.is-landing-button{
-  width: 33%;
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
 }
-.is-post-container{
-  padding-top: 5vh;
-  min-height:100vh;
-  background-color: rgb(112, 80, 112);
-  border-radius: 25px;
-  margin-left: 15px;
-  margin-right: 15px;
-  padding-right: 15px;
-  padding-left: 15px;
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
 }
-@media only screen and (min-width:772px){
-  .is-purple-container{
-    max-width: 50vw;
-    background-color: rgb(80, 8, 114) ;
-    min-height: 100vh;
-  }
-  
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
 }
-@media only screen and (min-width:772px){
-  .is-white-container{
-    min-height: 100vh;
-    max-width: 50vw;
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
   }
 }
-@media only screen and (max-width:772px){
-  .is-mobile-hidden{
-    display: none;
-  }
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
 }
-.leftcentered {
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
   position: relative;
-  top: 30%;
-  left: 12.5%;
-  margin-top: -50px;
-  margin-left: -100px;
-}
-@media only screen and (min-width:1420px){
-  .rightcentered {
-    position: fixed;
-    top: 33%;
-    right: 25%;
-  }
-
-  
-}
-.is-post{
-  min-height: 20vh;
-  min-width: 20vw;
-  background-color: white;
-  border-color: rgb(27, 5, 27);
-  border-style: solid;
-  border-width: 5px,10px,5px.10px;
-}
-.islanding-holder{
-  min-height: 100vh;
-}
-.is-small-bat{
-  max-height: 10vh;
-  max-width: 10vw;
-}
-.is-cust-font{
-  font-family: 'Lobster', cursive;
-  font-size: larger;
-
-}
-a{
-  color: black;
-}
-a:hover{
-  color: blueviolet;
-}
-.is-long{
-  max-width:33vw;
-  min-width:25vw;
-}
-.filters-container{
-  min-height: 25vh;
-  background-color: rgb(112, 80, 112);
-  border-radius: 25px;
-  margin-left: 15px;
-  padding-left: 5vw;
-  padding-right: 5vw;
-}
-main{
-  margin-top: 15px;
-}
-.is-post-icon{
-  max-width: 5vh;
-  max-height: 5vh;
-}
-.is-home-line{
-  color: blueviolet !important;
-  text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 1px 0 #000, -2px 0 0 #000;
-  -webkit-font-smoothing: antialiased !important;
-  font-size: 5vh !important;
+  min-height: 100%;
 }
 
-/* hamburger menu solution 
-needs toggler checkbox and and label for toggler */
-.toggler {
-  display: none;
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
 }
-.navbar .toggler:checked + .navbar-brand .burger span:nth-child(1) {
-  -webkit-transform: translateY(5px) rotate(45deg);
-  transform: translateY(5px) rotate(45deg);
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
 }
-.navbar .toggler:checked + .navbar-brand .burger span:nth-child(2) {
-  opacity: 0;
-}
-.navbar .toggler:checked + .navbar-brand .burger span:nth-child(3) {
-  -webkit-transform: translateY(-5px) rotate(-45deg);
-  transform: translateY(-5px) rotate(-45deg);
-}
-@media screen and (max-width: 1024px) {
-  .navbar .toggler:checked ~ .navbar-menu {
-    display: block;
-  }
-  /* We don't want menu to be displayed on mobile by default */
-  .navbar-menu {
-    display: none;
-  }
-}
-/* end Bulma Hamburger fix */
