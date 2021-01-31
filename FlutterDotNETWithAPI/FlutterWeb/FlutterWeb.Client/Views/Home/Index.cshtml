@@ -1,8 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<div class="columns is-centered" id="homepage">
+    <div class="column is-purple-container is-half has-text-centered is-mobile-hidden">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <h1 class="is-size-1 is-cust-font has-text-black">Flutter</h1>
+        <h2 class="is-size-4 has-text-black">what can Flutter do?</h2>
+
+        <ul class="list leftcentered">
+            <li onmouseover="htmlChange()" id="LineItem" class="is-home-line"><i class="far fa-comment"></i>Post</li>
+            <li ></li>
+             @* <li class="is-home-line"><i class="fas fa-book"></i>View</li> *@
+            @* <Li></Li> *@
+            @* <li class="is-home-line"><i class="far fa-comments"></i>React</li>  *@
+        </ul>
+
+    </div>
+    <div class="column is-half is-white-container">
+        <div class=" rightcentered">
+            <a href="/Feed" class="is-cust-font">
+                <img src="~/bat (1).png" alt="purple bat" class="is-small-bat">
+                Flutter
+            </a>
+            <strong>
+                    See What's Happening Online
+                </strong>
+            <br>
+            <strong>
+                Sign Up Today
+            </strong>
+            <br>
+            <a class="button is-large is-rounded is-Flutter"href="/SignUp"> Sign Up </a>
+            <br>
+            <a class="button is-large is-rounded " href="/Login"> Login </a>
+        </div>
+    </div>
 </div>
