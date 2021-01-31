@@ -13,6 +13,7 @@ using Flutter.Client.Models;
 namespace Flutter.Client.Controllers
 {
     [ApiController]
+    
     public class UserController : ControllerBase
     {
         private readonly FlutterContext _ctx;
