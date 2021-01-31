@@ -8,15 +8,15 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: dotnet restore /FlutterAPI
-      - run: dotnet build /FlutterAPI
+      - run: dotnet restore 
+      - run: dotnet build 
 
   test:
     needs: build
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: dotnet test /FlutterAPI
+      - run: dotnet test 
 
   analyze:
     needs: 
@@ -31,8 +31,8 @@ jobs:
       - run: dotnet tool install --global dotnet-sonarscanner
       - run: |
           dotnet sonarscanner begin /k:'Flutter-Net_ProjectP2' /o:'flutter-net' /d:sonar.host.url='https://sonarcloud.io/' /d:sonar.login=$SONARCLOUD_TOKEN
-          dotnet build /FlutterAPI
-          dotnet test /FlutterAPI
+          dotnet build
+          dotnet test
           dotnet sonarscanner end /d:sonar.login=$SONARCLOUD_TOKEN
 
   pack:
