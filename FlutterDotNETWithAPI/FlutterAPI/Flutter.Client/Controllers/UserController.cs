@@ -88,7 +88,7 @@ namespace Flutter.Client.Controllers
             return Ok(tag);
         }
 
-        [HttpPost]
+        [HttpPost("/AddPost")]
         public IActionResult AddPost(PostViewModel model)
         {
             Post ToBeAdded = new Post(model.UserId, model.Content, model.CommentOf);
