@@ -59,21 +59,13 @@
         </div>
     </div>
 
-    <div class="column is-one-third is-post-container">
+    <div class="column is-one-third is-post-container" >
       <form asp-controller="Post" asp-action="AddPost" method="POST">
         <textarea class="textarea" placeholder="Your post here" id="Content" onchange="UpdatePostTex()"></textarea>
         <button class="button is-Flutter" onclick="HandleText()">Post</button>
       </form>
 
-        <div class="is-post">
-             <strong>@*Username/ID?*@</strong>
-            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
-                 @* Content *@
-
-            </p>
-            <button class="button is-Flutter">Comment</button>
-            <button class="button is-Flutter">Like</button>
-        </div>
+        <div id="ProfileFeed"></div>
         }
         }
 

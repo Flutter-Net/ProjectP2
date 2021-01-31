@@ -11,8 +11,62 @@ const UserNameInput = document.querySelector('#UserNameInput')
 const PasswordInput = document.querySelector('#PasswordInput')
 const LoginBtn = document.querySelector('#LoginBtn')
 
+// Logged in data value 
+const CurrentUser = document.querySelector('#CurrentUser')
+
+// Profile feed
+const ProfileFeed = document.querySelector('#ProfileFeed')
+
+// loads users past posts
+if(ProfileFeed != null){
+    ProfileFeed.addEventListener('load', LoadProfileFeed());
+}
+
+function LoadProfileFeed(){
+
+    // this will give the currently logged in user name for queries
+    const user = CurrentUser.dataset.user
+    console.log(user)
+
+    // ajax call to /user/{name}/posts 
+    let Data = [
+        {
+            "content":"dang kahn"
+        },
+        {
+            "content":"going to sugar foots tonight"
+        },
+        {
+            "content":"where my dang ole tags at peggy?"
+        }
+    ]
+    
+    for(let i=0;i<Data.length;i++){
+
+        // TODO once making ajax calls add logic to match users to posts, long nested for loop might make for slower load times though will see
+
+        console.log(Data[i].content)
+        let post = document.createElement('div')
+        post.setAttribute('class','is-post')
+        ProfileFeed.prepend(post)
+        let img = document.createElement('img')
+        img.setAttribute('src','../batpost.png')
+        img.setAttribute('class','is-post-icon')
+        post.appendChild(img)
+        let UserName = document.createElement('strong')
+        UserName.innerHTML = `${user}`
+        post.appendChild(UserName)
+        let content = document.createElement('p')
+        content.innerHTML = Data[i].content
+        post.appendChild(content)
+        
+    }
 
 
+}
+
+
+// loads feed page
 if(Feed != null){
     Feed.addEventListener('load', LoadFeed());
 }
