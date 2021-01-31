@@ -24,12 +24,7 @@ namespace FlutterWeb.Client.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }
-
-         [HttpGet("/Feed")]
-         public IActionResult Feed(){
-             return View("Feed");
-         }
+        }         
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -5,7 +5,7 @@ namespace FlutterWeb.Client.Controllers
   [Route("[controller]")]
   public class FeedController : Controller
   {
-    [HttpGet]
+   [HttpGet("/Feed")]
     public IActionResult Feed()
     {
       return View("Feed");
