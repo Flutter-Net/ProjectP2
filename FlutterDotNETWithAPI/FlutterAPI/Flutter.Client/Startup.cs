@@ -23,6 +23,7 @@ namespace Flutter.Client
         }
 
         public IConfiguration Configuration { get; }
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -34,8 +35,16 @@ namespace Flutter.Client
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Flutter.Client", Version = "v1" });
             });
             services.AddDbContext<FlutterContext>();
+            services.AddCors(options =>
+       {
+           options.AddPolicy(name: MyAllowSpecificOrigins,
+                             builder =>
+                             {
+                                 builder.WithOrigins("https://localhost:5001").AllowAnyHeader().AllowAnyMethod();
+                             });
+       });
         }
-        
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -49,6 +58,8 @@ namespace Flutter.Client
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 
