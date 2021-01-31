@@ -8,19 +8,19 @@ using Microsoft.AspNetCore.Mvc;
 using FlutterWeb.Client.Models;
 
 namespace FlutterWeb.Client.Controllers
-{   
-    
+{
+
      [Route("[controller]")]
     public class HomeController : Controller
     {
-        
-        
+
+
         [HttpGet("/")]
         public IActionResult Index()
         {
             return View();
         }
-       
+
         public IActionResult Privacy()
         {
             return View();

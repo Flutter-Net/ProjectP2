@@ -1,0 +1,82 @@
+@{
+  Layout = "_LoggedInLayout";
+}
+
+<div class="columns" id="profile">
+    <div class="column is-one-third">
+        <div class="filters-container">
+            <div class="columns is-centered">
+                <h1 class="is-size-1 is-weight-bold has-text-black" id="LoggedIn">
+                     @*UserName*@
+                </h1>
+                <hr>
+            </div>
+            <div class="columns is-centered">
+                <div class="is-post">
+                    <p>
+                        @*AboutMe*@
+
+                    </p>
+                </div>
+                <hr>
+            </div>
+            <div class="columns is-centered">
+                <p>
+                    @*Date Joined*@
+
+                </p>
+                <hr>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="filters-container">
+            <div class="columns is-centered">
+                <h1 class="is-size-1 is-weight-bold has-text-black">View:</h1>
+                <hr>
+            </div>
+            <div class="columns is-centered">
+                <button class="button is-Flutter is-long">Posts</button>
+                <hr>
+            </div>
+            <div class="columns is-centered">
+                <button class="button is-Flutter is-long">Comments</button>
+                <hr>
+            </div>
+            <div class="columns is-centered">
+                <button class="button is-Flutter is-long">By Likes</button>
+                <hr>
+            </div>
+            <div class="columns is-centered">
+                <button class="button is-Flutter is-long">By Comments</button>
+                <hr>
+            </div>
+            <div class="columns is-centered">
+                <button class="button is-Flutter is-long">By Date</button>
+                <hr>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="column is-one-third is-post-container">
+      <form asp-controller="Post" asp-action="AddPost" method="POST">
+        <textarea class="textarea" placeholder="Your post here" id="Content" onchange="UpdatePostTex()"></textarea>
+        <button class="button is-Flutter" onclick="HandleText()">Post</button>
+      </form>
+
+        <div class="is-post">
+             <strong>@*Username/ID?*@</strong>
+            <p><img src="../batpost.png" alt="little bat head" class="is-post-icon">
+                 @* Content *@
+
+            </p>
+            <button class="button is-Flutter">Comment</button>
+            <button class="button is-Flutter">Like</button>
+        </div>
+        }
+        }
+
+
+    </div>
+</div>
