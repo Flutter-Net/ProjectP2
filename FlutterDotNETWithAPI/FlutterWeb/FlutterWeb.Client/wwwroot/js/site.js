@@ -27,40 +27,50 @@ function LoadProfileFeed() {
     // this will give the currently logged in user name for queries
     const user = CurrentUser.dataset.user
     console.log(user)
+    const ProfileUrl = "https://localhost:6001/user/"+user+"/posts"
 
-    // ajax call to /user/{name}/posts 
-    let Data = [
-        {
-            "content": "dang kahn"
-        },
-        {
-            "content": "going to sugar foots tonight"
-        },
-        {
-            "content": "where my dang ole tags at peggy?"
-        }
-    ]
+    ajax(ProfileUrl)
 
-    for (let i = 0; i < Data.length; i++) {
-
-        // TODO once making ajax calls add logic to match users to posts, long nested for loop might make for slower load times though will see
-
-        console.log(Data[i].content)
-        let post = document.createElement('div')
-        post.setAttribute('class', 'is-post')
-        ProfileFeed.prepend(post)
-        let img = document.createElement('img')
-        img.setAttribute('src', '../batpost.png')
-        img.setAttribute('class', 'is-post-icon')
-        post.appendChild(img)
-        let UserName = document.createElement('strong')
-        UserName.innerHTML = `${user}`
-        post.appendChild(UserName)
-        let content = document.createElement('p')
-        content.innerHTML = Data[i].content
-        post.appendChild(content)
-
+    function pass(res) {
+        console.log(res)
+    
+        res.json().then(function (data) {
+            console.log(data) 
+            for (let i = 0; i < data.length; i++) {
+                                
+                // TODO once making ajax calls add logic to match users to posts, long nested for loop might make for slower load times though will see
+                let post = document.createElement('div')
+                post.setAttribute('class', 'is-post')
+                ProfileFeed.prepend(post)
+                let img = document.createElement('img')
+                img.setAttribute('src', '../batpost.png')
+                img.setAttribute('class', 'is-post-icon')
+                post.appendChild(img)
+                let UserName = document.createElement('strong')
+                UserName.innerHTML = `${user}`
+                post.appendChild(UserName)
+                let content = document.createElement('p')
+                content.innerHTML = data[i].content
+                post.appendChild(content)
+                
+            }
+         
+        })
     }
+    function fail(res) {
+        console.error(res)
+    }
+    function ajax(input) {
+        fetch(input, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(pass, fail)
+    }
+   
+
+   
 
 
 }
@@ -97,8 +107,8 @@ function LoadFeed() {
 
             for (let i = 0; i < data.length; i++) {
                 
-                let user = users.filter(u => u.entityId == data[i].userId)
-                console.log(user[0].name)
+                let u = users.filter(u => u.entityId == data[i].userId)
+                console.log(u[0].name)
 
                 // TODO once making ajax calls add logic to match users to posts, long nested for loop might make for slower load times though will see
                 let post = document.createElement('div')
@@ -109,7 +119,7 @@ function LoadFeed() {
                 img.setAttribute('class', 'is-post-icon')
                 post.appendChild(img)
                 let UserName = document.createElement('strong')
-                UserName.innerHTML = `${user[0].name}`
+                UserName.innerHTML = `${u[0].name}`
                 post.appendChild(UserName)
                 let content = document.createElement('p')
                 content.innerHTML = data[i].content
@@ -195,24 +205,24 @@ function Login() {
 
 
 // ajax functions for queries
-function pass(res) {
-    console.log(res)
+// function pass(res) {
+//     console.log(res)
 
-    res.json().then(function (data) {
-        console.log(data) //options with data here
-        Data = data.toArray()
-    })
-}
-function fail(res) {
-    console.error(res)
-}
-function ajax(input) {
-    fetch(input, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(pass, fail)
-}
+//     res.json().then(function (data) {
+//         console.log(data) //options with data here
+//         Data = data.toArray()
+//     })
+// }
+// function fail(res) {
+//     console.error(res)
+// }
+// function ajax(input) {
+//     fetch(input, {
+//         method: "GET",
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     }).then(pass, fail)
+// }
 
 
