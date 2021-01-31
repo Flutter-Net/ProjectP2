@@ -24,7 +24,12 @@ namespace FlutterWeb.Client.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }         
+        }
+        [HttpGet("/ComingSoon")]
+        public IActionResult ComingSoon()
+        {
+          return View("ComingSoon");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
