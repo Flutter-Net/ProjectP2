@@ -10,6 +10,7 @@ using Flutter.Storing;
 using Microsoft.EntityFrameworkCore;
 using Flutter.Client.Models;
 
+
 namespace Flutter.Client.Controllers
 {
     [ApiController]
@@ -46,6 +47,7 @@ namespace Flutter.Client.Controllers
             var posts = _ctx.Posts.Where(post => post.UserId == user.EntityId);
             return Ok(posts);
         }
+         
         [HttpGet("/post/posts")]
         public IActionResult GetPosts()
         {
