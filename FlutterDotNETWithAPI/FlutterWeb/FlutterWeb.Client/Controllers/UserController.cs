@@ -19,11 +19,12 @@ namespace FlutterWeb.Client.Controllers
             return View("Login");
         }
 
-        [HttpGet("/Profile/{name}")]
-        public IActionResult Profile(string name)
+        [HttpGet("/Profile/{name}/{id}")]
+        public IActionResult Profile(string name,long id)
         {
             var model = new UserViewModel();
             model.UserName = name;
+            model.UserId=id;
             return View("Profile", model);
 
         }

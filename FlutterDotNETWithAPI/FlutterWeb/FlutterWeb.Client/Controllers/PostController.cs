@@ -9,32 +9,29 @@ namespace FlutterWeb.Client.Controllers
   [Route("[controller]")]
   public class PostController : Controller
   {
-    [HttpPost("/AddPost/{UserId}/{Content}/{CommentOf}")]
-    public IActionResult AddPost(long UserId, string Content, long CommentOf)
-    {
+  HttpClient client = new HttpClient();
+
+    [HttpPost]
+    public IActionResult AddPost(long UserId, string Content){
+
       var model = new PostViewModel();
       model.UserId = UserId;
-      model.Content = Content;
-      model.CommentOf = CommentOf;
+      model.Content=Content;
+      model.CommentOf=0;
 
-      var client = new HttpClient();
-      client.BaseAddress= new Uri("https:lllocalhost:6001/AddPost");
+     var postPost =  client.PostAsJsonAsync<PostViewModel>("https://localhost:6001/AddPost",model);   
 
-      var postModel = client.PostAsJsonAsync("model",model);
-      postModel.Wait();
+     var res = postPost.Result;
 
-      var result = postModel.Result;
-      if(result.IsSuccessStatusCode)
-      {
-        return View("Profile");
-      }
-      ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
-
-        return View("Error");
+    if(res.IsSuccessStatusCode)
+    {
+      return View("Profile");
     }
-
-
-
+    else
+    {
+      return View("Error");
+    }
+    }
     [HttpGet]
     public IActionResult Post()
     {

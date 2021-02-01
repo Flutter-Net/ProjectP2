@@ -1,6 +1,9 @@
 @{
   Layout = "_LoggedInLayout";
 }
+@model FlutterWeb.Client.Models.UserViewModel
+
+
 
 <div class="columns" id="profile">
     <div class="column is-one-third">
@@ -58,9 +61,10 @@
 
         </div>
     </div>
-
     <div class="column is-one-third is-post-container" >
-      <form>
+    
+      <form asp-controller="Post" asp-action="AddPost" method="POST">
+        <input class="is-hidden" type="text" asp-for="UserId" name="UserId" id="UserId" value=@Model.UserId>
         <textarea class="textarea" placeholder="Your post here" id="PostContent"></textarea>
     <button class="button is-Flutter" id="PostBtn" >Post</button>
       </form>
