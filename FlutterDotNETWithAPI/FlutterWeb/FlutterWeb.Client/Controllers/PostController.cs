@@ -18,7 +18,7 @@ namespace FlutterWeb.Client.Controllers
       model.CommentOf = CommentOf;
 
       var client = new HttpClient();
-      client.BaseAddress= new Uri("https:lllocalhost:6001/AddPost");
+      client.BaseAddress= new Uri("https:localhost:6001/AddPost");
 
       var postModel = client.PostAsJsonAsync("model",model);
       postModel.Wait();
