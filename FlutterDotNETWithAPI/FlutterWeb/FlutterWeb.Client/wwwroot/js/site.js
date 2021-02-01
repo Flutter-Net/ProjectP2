@@ -17,6 +17,15 @@ const CurrentUser = document.querySelector('#CurrentUser')
 // Profile feed
 const ProfileFeed = document.querySelector('#ProfileFeed')
 
+// Post ids
+const PostBtn = document.querySelector('#PostBtn')
+const PostContent = document.querySelector('#PostContent')
+
+// gives Post button listener
+if(PostBtn != null){
+    PostBtn.addEventListener('click',AddPost())
+}
+
 // loads users past posts
 if (ProfileFeed != null) {
     ProfileFeed.addEventListener('load', LoadProfileFeed());
@@ -169,27 +178,16 @@ if (LoginBtn != null) {
 }
 
 function Login() {
-    // const queryURL =  "http://localhost:5000/users"
+    const queryURL =  "https://localhost:6001/users"
 
-    // ajax(queryURL)
+    ajax(queryURL)
 
-    var Data = [
-        {
-            "name": "Bob",
-            "password": "Burger",
-            "entityId": "6"
-        },
-        {
-            "name": "Hank_Hill",
-            "password": "propane",
-            "entityId": "6"
-        }
-    ]
-
-    console.log(`user:${UserNameInput.value}`)
-    console.log(`password:${PasswordInput.value}`)
-
-    let user = Data.find(user => user.name == UserNameInput.value)
+    function pass(res) {
+        console.log(res)
+    
+        res.json().then(function (data) {
+            console.log(data) //options with data here
+            let user = data.find(user => user.name == UserNameInput.value)
 
     console.log(user)
 
@@ -199,10 +197,68 @@ function Login() {
     else {
         window.location.href = '/LoginFailed'
     }
+          
+        })
+    }
+    function fail(res) {
+        console.error(res)
+    }
+    function ajax(input) {
+        fetch(input, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(pass, fail)
+    }
+    
+  
+
+   
+
+    
 
 
 }
 
+
+function AddPost(){
+
+
+    let queryURL = `https://user/${CurrentUser}`
+    
+    ajax(queryURL)
+
+
+    function pass(res) {
+        console.log(res)
+    
+        res.json().then(function (data) {
+            console.log(data) 
+          
+            window.location.href=`/AddPost/${data[0].entityId}/${PostContent}/0`
+        })
+    }
+    function fail(res) {
+        console.error(res)
+    }
+    function ajax(input) {
+        fetch(input, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(pass, fail)
+    }
+    
+
+
+
+
+
+
+
+}
 
 // ajax functions for queries
 // function pass(res) {
@@ -210,7 +266,7 @@ function Login() {
 
 //     res.json().then(function (data) {
 //         console.log(data) //options with data here
-//         Data = data.toArray()
+      
 //     })
 // }
 // function fail(res) {
