@@ -9,10 +9,16 @@ namespace FlutterWeb.Client.Controllers
   [Route("[controller]")]
   public class PostController : Controller
   {
-  HttpClient client = new HttpClient();
-
+  HttpClient client;
+  
+    public PostController(){
+      HttpClientHandler clientHandler = new HttpClientHandler();
+        clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+        client = new HttpClient(clientHandler);
+    }
+    
     [HttpPost]
-    public IActionResult AddPost(long UserId, string Content){
+    public IActionResult AddPost( string Content, long UserId, string UserName){
 
       var model = new PostViewModel();
       model.UserId = UserId;
@@ -25,7 +31,10 @@ namespace FlutterWeb.Client.Controllers
 
     if(res.IsSuccessStatusCode)
     {
-      return View("Profile");
+      var userModel = new UserViewModel();
+      userModel.UserId=UserId;
+      userModel.UserName=UserName; 
+      return View("Profile",userModel);
     }
     else
     {
