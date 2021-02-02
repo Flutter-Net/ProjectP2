@@ -17,11 +17,6 @@ namespace Flutter.Storing
         {
             _ctx = context;
         }
-        public void AddUser(AUser user)
-        {
-            _ctx.Users.Add(user);
-            _ctx.SaveChanges();
-        }
         public void AddPost(Post post)
         {
             _ctx.Posts.Add(post);
@@ -60,9 +55,9 @@ namespace Flutter.Storing
             }
             return names;
         }
-        public List<long> GetPostIds(long Id)
+        public List<long> GetPostIds(string UserName)
         {
-            var PostIds = _ctx.Posts.Where(post => post.UserId == Id).ToList();
+            var PostIds = _ctx.Posts.Where(post => post.UserName == UserName).ToList();
             List<long> Ids = new List<long>();
             foreach (var post in PostIds)
             {
@@ -72,39 +67,39 @@ namespace Flutter.Storing
         }
 
 
-        public List<Post> GetPosts(long UserID)
+        public List<Post> GetPosts(string UserName)
         {
-            var posts = _ctx.Posts.Where(p => p.UserId == UserID);
+            var posts = _ctx.Posts.Where(p => p.UserName == UserName);
             return posts.OrderByDescending(post => post.DatePosted).ToList();
         }
 
-        public AUser GetUser(string UserName)
-        {
-            return _ctx.Users.FirstOrDefault(u => u.Name == UserName);
-        }
-        public List<AUser> GetAllUsers()
-        {
-            return _ctx.Users.ToList();
-        }
-        public long GetUserId(string UserName)
-        {
-            var user = _ctx.Users.FirstOrDefault(u => u.Name == UserName);
-            return user.EntityId;
-        }
-        public List<string> GetUsers()
-        {
-            return _ctx.Users.Select(user => user.Name).ToList();
-        }
-        public IEnumerable<AUser> GetUserObj()
-        {
-            return _ctx.Users.ToList();
-        }
+        // public AUser GetUser(string UserName)
+        // {
+        //     return _ctx.Users.FirstOrDefault(u => u.Name == UserName);
+        // }
+        // public List<AUser> GetAllUsers()
+        // {
+        //     return _ctx.Users.ToList();
+        // }
+        // public long GetUserId(string UserName)
+        // {
+        //     var user = _ctx.Users.FirstOrDefault(u => u.Name == UserName);
+        //     return user.EntityId;
+        // }
+        // public List<string> GetUsers()
+        // {
+        //     return _ctx.Users.Select(user => user.Name).ToList();
+        // }
+        // public IEnumerable<AUser> GetUserObj()
+        // {
+        //     return _ctx.Users.ToList();
+        // }
 
-        public string UserPassword(string UserName)
-        {
-            var user = _ctx.Users.FirstOrDefault(u => u.Name == UserName);
-            return user.Password;
-        }
+        // public string UserPassword(string UserName)
+        // {
+        //     var user = _ctx.Users.FirstOrDefault(u => u.Name == UserName);
+        //     return user.Password;
+        // }
 
     }
 }

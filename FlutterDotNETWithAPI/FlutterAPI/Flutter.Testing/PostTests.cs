@@ -8,7 +8,7 @@ namespace Flutter.Testing
         [Fact]
         private void Test_PostExists()
         {
-            var sut = new Post(0,"testing");
+            var sut = new Post("","testing");
 
             var actual = sut;
 
