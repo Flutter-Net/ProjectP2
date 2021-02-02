@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+
 using FlutterWeb.Client.Models;
 
 namespace FlutterWeb.Client.Controllers
 {
+
+     [Route("[controller]")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        
 
+
+        [HttpGet("/")]
         public IActionResult Index()
         {
             return View();
@@ -26,6 +26,11 @@ namespace FlutterWeb.Client.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+        [HttpGet("/ComingSoon")]
+        public IActionResult ComingSoon()
+        {
+          return View("ComingSoon");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -1,0 +1,28 @@
+<div class="columns is-centered" id="signuppage">
+    <div class="column is-one-third is-post-container">
+        <form asp-controller="User" asp-action="AddUser" method="POST">
+            <div class="field">
+                <label class="label">UserName</label>
+                <div class="control">
+                    <input class="input" placeholder="UserName"></input>
+                </div>
+            </div>
+            <div>
+                <label class="label">Password</label>
+                <div class="control">
+                    <input class="input" placeholder="Password"></input>
+                </div>
+            </div>
+            <div>
+                <label class="label">Confirm Password</label>
+                <div class="control">
+                    <input class="input" type="password" placeholder="Confirm Password"></input>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button class="button is-Flutter" type="submit">Sign up</button>
+                </div>
+            </div>
+        </form>
+    </div>

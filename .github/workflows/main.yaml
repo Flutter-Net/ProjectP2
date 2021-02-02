@@ -1,6 +1,6 @@
 defaults:
   run:
-    working-directory: FlutterDotNETWithAPI/FlutterAPI
+    working-directory: FlutterDotNETWithAPI
     
 jobs:
   build:
@@ -8,15 +8,15 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: dotnet restore
-      - run: dotnet build
+      - run: dotnet restore ./FlutterAPI/
+      - run: dotnet build ./FlutterAPI/
 
   test:
     needs: build
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: dotnet test
+      - run: dotnet test ./FlutterAPI/
 
   analyze:
     needs: 
@@ -31,8 +31,8 @@ jobs:
       - run: dotnet tool install --global dotnet-sonarscanner
       - run: |
           dotnet sonarscanner begin /k:'Flutter-Net_ProjectP2' /o:'flutter-net' /d:sonar.host.url='https://sonarcloud.io/' /d:sonar.login=$SONARCLOUD_TOKEN
-          dotnet build
-          dotnet test
+          dotnet build ./FlutterAPI/
+          dotnet test ./FlutterAPI/
           dotnet sonarscanner end /d:sonar.login=$SONARCLOUD_TOKEN
 
   pack:
@@ -46,7 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo $DOCKER_TOKEN | docker login -u $DOCKER_USER --password-stdin
-      - run: docker image build -f ../Dockerfile -t flutterdemo ..
+      - run: docker image build -f ../Dockerfile -t flutterdemo .
       - run: docker image tag flutterdemo flutter2021/projectp2flutter:flutterdemo
       - run: docker push flutter2021/projectp2flutter:flutterdemo
       - run: docker logout

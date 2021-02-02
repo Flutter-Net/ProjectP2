@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Post";
+}
+
+<script type="text/javascript">
+    let PostText = ""
+    const BadWords = ['shit', 'ass', 'fuck', 'gay', 'damn', 'bastard', 'bitch', 'cunt', 'poop', 'nigg', 'cock','dick', 'retard', 'pussy']
+    const HandleText = () => {
+        let str = PostText.toLowerCase()
+        let bad = false
+        for (let i = 0; i < BadWords.length; i++) {
+            if (str.includes(BadWords[i])) {
+                bad = true
+            }
+        }
+        if (bad === true) {
+            alert('Post contains inappropriate content')
+            location.reload();
+
+        }
+        else {
+            Post()
+        }
+    }
+    const UpdatePostTex = () => {
+        PostText = document.getElementById("PostText").value;
+    }
+    const Post = () => {
+        alert(PostText)
+        console.log(PostText)
+    }
+</script>
+
+<div class="columns is-centered">
+    <div class="column is-one-third is-post-container">
+        <textarea class="textarea" placeholder="Your post here" id="PostText" onchange="UpdatePostTex()"></textarea>
+        <button class="button is-Flutter" onclick="HandleText()">Post</button>
+        <button class="button is-Flutter">Delete</button>
+    </div>
+</div>
