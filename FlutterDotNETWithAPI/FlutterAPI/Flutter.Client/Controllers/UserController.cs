@@ -25,28 +25,28 @@ namespace Flutter.Client.Controllers
         }
 
 
-        [HttpGet("/users")]
-        public async Task<IActionResult> GetUsers()
-        {
-            var users = _ctx.Users.ToList();
+        // [HttpGet("/users")]
+        // public async Task<IActionResult> GetUsers()
+        // {
+        //     var users = _ctx.Users.ToList();
 
-            return await Task.FromResult(Ok(users));
+        //     return await Task.FromResult(Ok(users));
 
-        }
-        [HttpGet("/user/{name}")]
-        public IActionResult GetUser(string name)
-        {
-            var user = _ctx.Users.Include(u => u.Posts).FirstOrDefault(user => user.Name == name);
+        // }
+        // [HttpGet("/user/{name}")]
+        // public IActionResult GetUser(string name)
+        // {
+        //     var user = _ctx.Users.Include(u => u.Posts).FirstOrDefault(user => user.Name == name);
 
-            return Ok(user);
-        }
-        [HttpGet("/user/{name}/posts")]
-        public IActionResult GetUserPosts(string name)
-        {
-            var user = _ctx.Users.FirstOrDefault(user => user.Name == name);
-            var posts = _ctx.Posts.Where(post => post.UserId == user.EntityId);
-            return Ok(posts);
-        }
+        //     return Ok(user);
+        // }
+        // [HttpGet("/user/{name}/posts")]
+        // public IActionResult GetUserPosts(string name)
+        // {
+        //     var user = _ctx.Users.FirstOrDefault(user => user.Name == name);
+        //     var posts = _ctx.Posts.Where(post => post.UserId == user.EntityId);
+        //     return Ok(posts);
+        // }
          
         [HttpGet("/post/posts")]
         public IActionResult GetPosts()
@@ -94,7 +94,7 @@ namespace Flutter.Client.Controllers
         [HttpPost("/AddPost")]
         public IActionResult AddPost(PostViewModel model)
         {
-            Post ToBeAdded = new Post(model.UserId, model.Content, model.CommentOf);
+            Post ToBeAdded = new Post(model.UserName, model.Content, model.CommentOf);
             _ctx.Posts.Add(ToBeAdded);
             _ctx.SaveChanges();
 
