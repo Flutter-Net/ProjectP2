@@ -9,32 +9,38 @@ namespace FlutterWeb.Client.Controllers
   [Route("[controller]")]
   public class PostController : Controller
   {
-    [HttpPost("/AddPost/{UserId}/{Content}/{CommentOf}")]
-    public IActionResult AddPost(long UserId, string Content, long CommentOf)
-    {
-      var model = new PostViewModel();
-      model.UserId = UserId;
-      model.Content = Content;
-      model.CommentOf = CommentOf;
+  HttpClient client;
 
-      var client = new HttpClient();
-      client.BaseAddress= new Uri("https:localhost:6001/AddPost");
-
-      var postModel = client.PostAsJsonAsync("model",model);
-      postModel.Wait();
-
-      var result = postModel.Result;
-      if(result.IsSuccessStatusCode)
-      {
-        return View("Profile");
-      }
-      ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
-
-        return View("Error");
+    public PostController(){
+      HttpClientHandler clientHandler = new HttpClientHandler();
+        clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+        client = new HttpClient(clientHandler);
     }
 
+    [HttpPost]
+    public IActionResult AddPost( string Content, long UserId, string UserName){
 
+      var model = new PostViewModel();
+      model.UserId = UserId;
+      model.Content=Content;
+      model.CommentOf=0;
 
+     var postPost =  client.PostAsJsonAsync<PostViewModel>("https://localhost:6001/AddPost",model);
+
+     var res = postPost.Result;
+
+    if(res.IsSuccessStatusCode)
+    {
+      var userModel = new UserViewModel();
+      userModel.UserId=UserId;
+      userModel.UserName=UserName;
+      return View("Profile",userModel);
+    }
+    else
+    {
+      return View("Error");
+    }
+    }
     [HttpGet]
     public IActionResult Post()
     {

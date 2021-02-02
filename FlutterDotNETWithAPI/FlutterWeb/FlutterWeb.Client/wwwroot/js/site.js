@@ -19,12 +19,7 @@ const ProfileFeed = document.querySelector('#ProfileFeed')
 
 // Post ids
 const PostBtn = document.querySelector('#PostBtn')
-const PostContent = document.querySelector('#PostContent')
-
-// gives Post button listener
-if(PostBtn != null){
-    PostBtn.addEventListener('click',AddPost())
-}
+const UserId = document.querySelector('#UserId')
 
 // loads users past posts
 if (ProfileFeed != null) {
@@ -45,9 +40,8 @@ function LoadProfileFeed() {
     
         res.json().then(function (data) {
             console.log(data) 
-            for (let i = 0; i < data.length; i++) {
-                                
-                // TODO once making ajax calls add logic to match users to posts, long nested for loop might make for slower load times though will see
+            for (let i = 0; i < data.length; i++) {                             
+                
                 let post = document.createElement('div')
                 post.setAttribute('class', 'is-post')
                 ProfileFeed.prepend(post)
@@ -60,8 +54,7 @@ function LoadProfileFeed() {
                 post.appendChild(UserName)
                 let content = document.createElement('p')
                 content.innerHTML = data[i].content
-                post.appendChild(content)
-                
+                post.appendChild(content)                
             }
          
         })
@@ -76,6 +69,38 @@ function LoadProfileFeed() {
                 'Content-Type': 'application/json'
             }
         }).then(pass, fail)
+    }
+
+    let UserString = CurrentUser.getAttribute('data-user')
+    let queryUserURL = `https://localhost:6001/user/${UserString}`
+
+    
+    
+    idajax(queryUserURL)
+
+    console.log(UserString)
+
+    function pass2(res) {
+        console.log(res)
+    
+        res.json().then(function (data) {
+            console.log(`id:${data.entityId}`) 
+            UserId.value = data.entityId
+
+            
+                       
+        })
+    }
+    function fail2(res) {
+        console.error(res)
+    }
+    function idajax(input) {
+        fetch(input, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(pass2, fail2)
     }
    
 
@@ -188,11 +213,13 @@ function Login() {
         res.json().then(function (data) {
             console.log(data) //options with data here
             let user = data.find(user => user.name == UserNameInput.value)
+            
+            
 
     console.log(user)
 
     if (PasswordInput.value == user.password) {
-        window.location.href = `/Profile/${UserNameInput.value}`
+        window.location.href = `/Profile/${UserNameInput.value}/${user.entityId}`
     }
     else {
         window.location.href = '/LoginFailed'
@@ -222,43 +249,6 @@ function Login() {
 }
 
 
-function AddPost(){
-
-
-    let queryURL = `https://user/${CurrentUser}`
-    
-    ajax(queryURL)
-
-
-    function pass(res) {
-        console.log(res)
-    
-        res.json().then(function (data) {
-            console.log(data) 
-          
-            window.location.href=`/AddPost/${data[0].entityId}/${PostContent}/0`
-        })
-    }
-    function fail(res) {
-        console.error(res)
-    }
-    function ajax(input) {
-        fetch(input, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(pass, fail)
-    }
-    
-
-
-
-
-
-
-
-}
 
 // ajax functions for queries
 // function pass(res) {
