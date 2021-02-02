@@ -100,6 +100,15 @@ namespace Flutter.Client.Controllers
 
             return Ok();
         }
+        [HttpPost("/AddUser")]
+        public IActionResult AddPost(UserViewModel model)
+        {
+            AUser ToBeAdded = new AUser(model.UserName,model.Password);
+            _ctx.Users.Add(ToBeAdded);
+            _ctx.SaveChanges();
+
+            return Ok();
+        }
     }
 }
 

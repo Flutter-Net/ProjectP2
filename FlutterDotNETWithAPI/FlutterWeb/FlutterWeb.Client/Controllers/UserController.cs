@@ -1,3 +1,5 @@
+using System.Net.Http;
+using System.Net.Http.Json;
 using FlutterWeb.Client.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +9,13 @@ namespace FlutterWeb.Client.Controllers
     public class UserController : Controller
     {
 
+        HttpClient client;
+
+    public UserController(){
+      HttpClientHandler clientHandler = new HttpClientHandler();
+        clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+        client = new HttpClient(clientHandler);
+    }
         [HttpGet("/SignUp")]
         public IActionResult SignUp()
         {
@@ -30,9 +39,26 @@ namespace FlutterWeb.Client.Controllers
         }
 
         [HttpPost("/AddUser")]
-        public IActionResult AddUser()
+        public IActionResult AddUser(string UserName, string Password)
         {
-            return View("Profile");
+            var model = new UserViewModel();
+            model.UserName = UserName;
+            model.Password = Password;
+
+            var postUser = client.PostAsJsonAsync<UserViewModel>("https://localhost:6001/AddUser",model);
+
+            var res = postUser.Result;
+
+            if(res.IsSuccessStatusCode)
+            {
+
+            return View("Login");
+            }
+            else
+            {
+                return View("Error");
+            }
+
         }
         [HttpGet("/LoginFailed")]
         public IActionResult LoginFail()

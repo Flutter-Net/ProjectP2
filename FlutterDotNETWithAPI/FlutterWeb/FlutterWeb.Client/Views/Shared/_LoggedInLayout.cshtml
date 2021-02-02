@@ -51,12 +51,14 @@
                         </a>
 
                         <div class="navbar-dropdown">
-                            <a class="navbar-item" href="/Feed">
+                            <form  id ="my_form" asp-controller="Feed" asp-action="FeedLoggedIn" method="GET">
+                            <input class="is-hidden" type="text" name="UserName" value=@Model.UserName >
+                            <input class="is-hidden" type="text" name="UserId" value=@Model.UserId>
+                            <a class="navbar-item" href="javascript:{}" onclick="document.getElementById('my_form').submit()">
                                 Feed
                             </a>
-                            <a class="navbar-item" href="/Post">
-                                Post
-                            </a>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
