@@ -10,6 +10,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: dotnet restore ./FlutterAPI/
       - run: dotnet build ./FlutterAPI/
+      - run: dotnet restore ./FlutterWeb/
+      - run: dotnet build ./FlutterWeb/
 
   test:
     needs: build
@@ -17,6 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: dotnet test ./FlutterAPI/
+      - run: dotnet test ./FlutterWeb/
 
   analyze:
     needs: 
@@ -33,6 +36,8 @@ jobs:
           dotnet sonarscanner begin /k:'Flutter-Net_ProjectP2' /o:'flutter-net' /d:sonar.host.url='https://sonarcloud.io/' /d:sonar.login=$SONARCLOUD_TOKEN
           dotnet build ./FlutterAPI/
           dotnet test ./FlutterAPI/
+          dotnet build ./FlutterWeb/
+          dotnet test ./FlutterWeb/
           dotnet sonarscanner end /d:sonar.login=$SONARCLOUD_TOKEN
 
   pack:
@@ -46,9 +51,35 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo $DOCKER_TOKEN | docker login -u $DOCKER_USER --password-stdin
-      - run: docker image build -f ../Dockerfile -t flutterdemo .
-      - run: docker image tag flutterdemo flutter2021/projectp2flutter:flutterdemo
-      - run: docker push flutter2021/projectp2flutter:flutterdemo
+      - run: docker image build -f FlutterAPI/Dockerfile -t flutterapi .
+      - run: docker image tag flutterapi flutter2021/projectp2flutter:flutterapi
+      - run: docker push flutter2021/projectp2flutter:flutterapi
+      - run: docker image build -f FlutterMVC/Dockerfile -t fluttermvc .
+      - run: docker image tag fluttermvc flutter2021/projectp2flutter:fluttermvc
+      - run: docker push flutter2021/projectp2flutter:fluttermvc
       - run: docker logout
 
-on: push
+  deploy:
+    needs:
+      - build
+      - test
+      - pack
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/login@v1
+        with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: FlutterAPI
+          images: flutter2021/projectp2flutter:flutterapi
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: FlutterAPI
+          images: flutter2021/projectp2flutter:flutterapi
+
+on: 
+  push:
+    branches:
+      - master

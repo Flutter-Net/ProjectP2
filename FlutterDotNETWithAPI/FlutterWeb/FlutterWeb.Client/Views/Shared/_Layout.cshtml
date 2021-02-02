@@ -1,28 +1,31 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FlutterWeb.Client</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css">
-    <link rel="stylesheet" href="~/css/site.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - FlutterWeb.Client</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css">
+  <link rel="stylesheet" href="~/css/site.css" />
 </head>
+
 <body>
-    <header>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-      <input type="checkbox" id="toggler" role="button" class="toggler" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" />
+  <header>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <input type="checkbox" id="toggler" role="button" class="toggler" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample" />
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
           <img src="../bat (1).png">
         </a>
 
-        <label for="toggler" class="navbar-burger burger" >
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </label>
-  </div>
-        
+        <label for="toggler" class="navbar-burger burger">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </label>
+      </div>
+
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
@@ -48,34 +51,37 @@
       </div>
 
       <div class="navbar-end">
-        
+
 
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-Flutter" href="/Signup">
-              Sign up
-            </a>
-            <a class="button is-FlutterLight" href="/Login">
-              Log in
-            </a>
+            @if (User.Identity.IsAuthenticated)
+            {
+              <p class="navbar-text">Hello, @User.Identity.Name</p>
+            }
+            else
+            {
+              <a asp-controller="Account" asp-action="SignIn">Sign In</a>
+            }
           </div>
         </div>
       </div>
     </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+  </header>
+  <div class="container">
+    <main role="main" class="pb-3">
+      @RenderBody()
+    </main>
+  </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - FlutterWeb.Client - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+  <footer class="border-top footer text-muted">
+    <div class="container">
+      &copy; 2021 - FlutterWeb.Client - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+  </footer>
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+  @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

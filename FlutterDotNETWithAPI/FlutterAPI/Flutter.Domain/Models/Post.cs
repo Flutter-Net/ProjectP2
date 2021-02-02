@@ -7,43 +7,43 @@ namespace Flutter.Domain.Models
 {
     public class Post : AEntity
     {
-        public long UserId { get; set; }
+        public string UserName { get; set; }
         public DateTime DatePosted { get; set; }
         public ICollection<Tag> TagIds { get; set; }
         public string Content { get; set; }
         public long LikeScore { get; set; }
         public long CommentOfId { get; set; }
         public Post() { }
-        public Post(long inputUserId, string inputContent)
+        public Post(string InputUserName, string inputContent)
         {
-            AddUserId(inputUserId);
+            AddUserName(InputUserName);
             AddContent(inputContent);
             AddAsComment(0);
             AddDate();
             InitializeLikes();
             AddTags(new List<Tag>());
         }
-        public Post(long inputUserId, string inputContent, long CommentOf)
+        public Post(string InputUserName, string inputContent, long CommentOf)
         {
-            AddUserId(inputUserId);
+            AddUserName(InputUserName);
             AddContent(inputContent);
             AddAsComment(CommentOf);
             AddDate();
             InitializeLikes();
             AddTags(new List<Tag>());
         }
-        public Post(long inputUserId, string inputContent, long CommentOf, IEnumerable<Tag> Tags)
+        public Post(string InputUserName, string inputContent, long CommentOf, IEnumerable<Tag> Tags)
         {
-            AddUserId(inputUserId);
+            AddUserName(InputUserName);
             AddContent(inputContent);
             AddAsComment(CommentOf);
             AddDate();
             InitializeLikes();
             AddTags(Tags);
         }
-        public void AddUserId(long InputUserId)
+        public void AddUserName(string InputUserName)
         {
-            UserId = InputUserId;
+            UserName = InputUserName;
         }
         public void AddAsComment(long InputPostId)
         {
