@@ -65,8 +65,15 @@
             </div>
 
             <div class="navbar-end">
-                <h1 class="is-cust-font navbar-item" data-user="@Model.UserName" data-id="@Model.UserId" id="CurrentUser">
-                    @Model.UserName
+                <h1 class="is-cust-font navbar-item" id="CurrentUser">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <p class="navbar-text">Hello, @User.Identity.Name</p>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="SignIn">Sign In</a>
+                    }
                 </h1>
 
                 <div class="navbar-item">

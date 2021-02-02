@@ -23,30 +23,7 @@ namespace Flutter.Client.Controllers
         {
             _ctx = context;
         }
-
-
-        // [HttpGet("/users")]
-        // public async Task<IActionResult> GetUsers()
-        // {
-        //     var users = _ctx.Users.ToList();
-
-        //     return await Task.FromResult(Ok(users));
-
-        // }
-        // [HttpGet("/user/{name}")]
-        // public IActionResult GetUser(string name)
-        // {
-        //     var user = _ctx.Users.Include(u => u.Posts).FirstOrDefault(user => user.Name == name);
-
-        //     return Ok(user);
-        // }
-        // [HttpGet("/user/{name}/posts")]
-        // public IActionResult GetUserPosts(string name)
-        // {
-        //     var user = _ctx.Users.FirstOrDefault(user => user.Name == name);
-        //     var posts = _ctx.Posts.Where(post => post.UserId == user.EntityId);
-        //     return Ok(posts);
-        // }
+       
          
         [HttpGet("/post/posts")]
         public IActionResult GetPosts()
@@ -59,6 +36,13 @@ namespace Flutter.Client.Controllers
         public IActionResult GetPost(long id)
         {
             var post = _ctx.Posts.FirstOrDefault(post => post.EntityId == id);
+
+            return Ok(post);
+        }
+        [HttpGet("/post/{user}")]
+        public IActionResult GetPost(string user)
+        {
+            var post = _ctx.Posts.FirstOrDefault(post => post.UserName == user);
 
             return Ok(post);
         }
@@ -100,15 +84,7 @@ namespace Flutter.Client.Controllers
 
             return Ok();
         }
-        [HttpPost("/AddUser")]
-        public IActionResult AddPost(UserViewModel model)
-        {
-            AUser ToBeAdded = new AUser(model.UserName,model.Password);
-            _ctx.Users.Add(ToBeAdded);
-            _ctx.SaveChanges();
-
-            return Ok();
-        }
+       
     }
 }
 
