@@ -54,7 +54,7 @@ jobs:
       - run: docker image build -f FlutterAPI/Dockerfile -t flutterapi .
       - run: docker image tag flutterapi flutter2021/projectp2flutter:flutterapi
       - run: docker push flutter2021/projectp2flutter:flutterapi
-      - run: docker image build -f FlutterMVC/Dockerfile -t fluttermvc .
+      - run: docker image build -f FlutterWeb/Dockerfile -t fluttermvc .
       - run: docker image tag fluttermvc flutter2021/projectp2flutter:fluttermvc
       - run: docker push flutter2021/projectp2flutter:fluttermvc
       - run: docker logout
