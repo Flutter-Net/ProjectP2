@@ -51,4 +51,17 @@ jobs:
       - run: docker push flutter2021/projectp2flutter:flutterdemo
       - run: docker logout
 
+  deploy:
+    needs:
+      - build
+      - test
+      - pack
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: FlutterAPI
+          image: flutter2021/projectp2flutter:flutterdemo
+
 on: push
