@@ -2,8 +2,8 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 as base
 
 WORKDIR /workspace
 COPY FlutterAPI .
-RUN dotnet build
-RUN dotnet publish -c Release -o out Flutter.Client/Flutter.Client.csproj
+RUN dotnet build -c Release
+RUN dotnet publish --no-build -c Release -o out Flutter.Client/Flutter.Client.csproj
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 
