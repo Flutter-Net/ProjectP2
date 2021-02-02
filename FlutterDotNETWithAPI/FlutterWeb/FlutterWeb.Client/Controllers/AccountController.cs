@@ -5,6 +5,8 @@ using Okta.AspNetCore;
 
 public class AccountController : Controller
 {
+
+    [Route("[controller]")]
     public IActionResult SignIn()
     {
         if (!HttpContext.User.Identity.IsAuthenticated)

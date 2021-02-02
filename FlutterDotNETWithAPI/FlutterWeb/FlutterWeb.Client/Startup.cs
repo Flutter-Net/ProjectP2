@@ -35,7 +35,7 @@ namespace FlutterWeb.Client
                 .AddOktaMvc(new OktaMvcOptions
                 {
                     // Replace these values with your Okta configuration
-                    OktaDomain = "https://" + Configuration["oktaDomain"],
+                    OktaDomain = Configuration["oktaDomain"],
                     ClientId = Configuration["oktaClient"],
                     ClientSecret = Configuration["oktaSecret"]
                 });
