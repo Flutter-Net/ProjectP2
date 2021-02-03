@@ -9,4 +9,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0
 
 WORKDIR /publish
 COPY --from=base workspace/out .
-CMD ["dotnet", "Flutter.Client.dll"]
+CMD ["dotnet", "FlutterWeb.Client.dll"]
