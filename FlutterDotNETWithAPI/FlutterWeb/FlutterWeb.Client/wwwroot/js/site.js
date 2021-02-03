@@ -3,6 +3,10 @@
 
 // Write your JavaScript code.
 
+
+// Grabs user name
+const user = document.querySelector('#CurrentUser')
+
 // Feed Page Ids
 const Feed = document.querySelector('#FeedPage');
 const FeedContainer = document.querySelector('#FeedContainer')
@@ -24,9 +28,9 @@ if (ProfileFeed != null) {
 
 function LoadProfileFeed() {
 
+    let UserName = user.getAttribute('data-user')
     
-    
-    const ProfileUrl = "https://localhost:6001/user/" + user + "/posts"
+    const ProfileUrl = "https://localhost:6001/posts/" + UserName
 
     ajax(ProfileUrl)
 
@@ -45,7 +49,7 @@ function LoadProfileFeed() {
                 img.setAttribute('class', 'is-post-icon')
                 post.appendChild(img)
                 let UserName = document.createElement('strong')
-                UserName.innerHTML = data[i].UserName
+                UserName.innerHTML = data[i].userName
                 post.appendChild(UserName)
                 let content = document.createElement('p')
                 content.innerHTML = data[i].content
@@ -65,42 +69,7 @@ function LoadProfileFeed() {
             }
         }).then(pass, fail)
     }
-
-    let UserString = CurrentUser.getAttribute('data-user')
-    let queryUserURL = `https://localhost:6001/user/${UserString}`
-
-
-
-    idajax(queryUserURL)
-
-    console.log(UserString)
-
-    function pass2(res) {
-        console.log(res)
-
-        res.json().then(function (data) {
-            console.log(`id:${data.entityId}`)
-            UserId.value = data.entityId
-
-
-
-        })
-    }
-    function fail2(res) {
-        console.error(res)
-    }
-    function idajax(input) {
-        fetch(input, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(pass2, fail2)
-    }
-
-
-
-
+   
 
 }
 
