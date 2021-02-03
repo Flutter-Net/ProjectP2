@@ -83,6 +83,25 @@ namespace Flutter.Client.Controllers
 
             return Ok();
         }
+
+        [HttpPut("/Like")]
+        public IActionResult Like(PostViewModel model)
+        {
+            var postToLike = _ctx.Posts.Where(post => post.EntityId == model.PostId).FirstOrDefault<Post>();
+            postToLike.LikeScore = postToLike.LikeScore +1;
+            _ctx.SaveChanges();
+
+            return Ok();
+        }
+        [HttpPut("/DisLike")]
+        public IActionResult DisLike(PostViewModel model)
+        {
+            var postToLike = _ctx.Posts.Where(post => post.EntityId == model.PostId).FirstOrDefault<Post>();
+            postToLike.LikeScore = postToLike.LikeScore -1;
+            _ctx.SaveChanges();
+
+            return Ok();
+        }
        
     }
 }

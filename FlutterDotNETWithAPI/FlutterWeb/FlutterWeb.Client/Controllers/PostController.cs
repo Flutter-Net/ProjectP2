@@ -44,6 +44,41 @@ namespace FlutterWeb.Client.Controllers
                 return View("Error");
             }
         }
+        [HttpGet("Like/{id}")]
+        public IActionResult Like( long id)
+        {
+            var model = new PostViewModel();
+            model.PostId = id;
+            
+            var postLike = client.PutAsJsonAsync<PostViewModel>("https://localhost:6001/Like", model);
+            var res = postLike.Result;
+            if(res.IsSuccessStatusCode){
+
+            return View("Feed",model);
+            }else
+            {
+                var error = new ErrorViewModel();
+                return View("Error",error);
+            }
+        }
+        [HttpGet("DisLike/{id}")]
+        public IActionResult DisLike( long id)
+        {
+            var model = new PostViewModel();
+            model.PostId = id;
+            
+            var postLike = client.PutAsJsonAsync<PostViewModel>("https://localhost:6001/DisLike", model);
+            var res = postLike.Result;
+            if(res.IsSuccessStatusCode){
+
+            return View("Feed",model);
+            }else
+            {
+                var error = new ErrorViewModel();
+                return View("Error",error);
+            }
+        }
+
         [Authorize]
         [HttpGet]
         public IActionResult Post()

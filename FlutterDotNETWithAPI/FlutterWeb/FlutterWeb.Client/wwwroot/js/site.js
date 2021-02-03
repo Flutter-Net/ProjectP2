@@ -92,13 +92,14 @@ function LoadFeed() {
 
             for (let i = 0; i < data.length; i++) {
 
+                console.log(data[i])
 
 
                 let post = document.createElement('div')
                 post.setAttribute('class', 'is-post')
                 FeedContainer.prepend(post)
                 let img = document.createElement('img')
-                img.setAttribute('src', '../batpost.png')
+                img.setAttribute('src', '../../batpost.png')
                 img.setAttribute('class', 'is-post-icon')
                 post.appendChild(img)
                 let UserName = document.createElement('strong')
@@ -107,14 +108,25 @@ function LoadFeed() {
                 let content = document.createElement('p')
                 content.innerHTML = data[i].content
                 post.appendChild(content)
+                let likes = document.createElement('p')
+                likes.innerHTML = ` Likes: ${data[i].likeScore}`
+                post.appendChild(likes)
                 let CommentBtn = document.createElement('button')
                 CommentBtn.setAttribute('class', 'button is-Flutter')
                 CommentBtn.innerHTML = 'Comment'
                 post.appendChild(CommentBtn)
-                let LikeBtn = document.createElement('button')
+                let LikeBtn = document.createElement('a')
                 LikeBtn.setAttribute('class', 'button is-Flutter')
+                LikeBtn.setAttribute('data-postId',data[i].entityId)
                 LikeBtn.innerHTML = 'Like'
                 post.appendChild(LikeBtn)
+                LikeBtn.setAttribute('href',`/Post/Like/${data[i].entityId}`)
+                let DisLikeBtn = document.createElement('a')
+                DisLikeBtn.setAttribute('class', 'button is-Flutter')
+                DisLikeBtn.setAttribute('data-postId',data[i].entityId)
+                DisLikeBtn.setAttribute('href',`/Post/DisLike/${data[i].entityId}`)
+                DisLikeBtn.innerHTML = 'DisLike'
+                post.appendChild(DisLikeBtn)
             }
 
         })
