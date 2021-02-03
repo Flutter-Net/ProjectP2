@@ -88,7 +88,7 @@ function LoadFeed() {
     function pass(res) {
 
         res.json().then(function (data) {
-            console.log(users)
+            
 
             for (let i = 0; i < data.length; i++) {
 
@@ -102,7 +102,7 @@ function LoadFeed() {
                 img.setAttribute('class', 'is-post-icon')
                 post.appendChild(img)
                 let UserName = document.createElement('strong')
-                UserName.innerHTML = data[i].UserName
+                UserName.innerHTML = data[i].userName
                 post.appendChild(UserName)
                 let content = document.createElement('p')
                 content.innerHTML = data[i].content
