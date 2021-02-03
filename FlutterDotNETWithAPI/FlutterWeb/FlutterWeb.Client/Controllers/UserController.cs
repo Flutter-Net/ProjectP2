@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FlutterWeb.Client.Controllers
 {
-    [Route("[conroller]")]
+    [Route("[controller]")]
     public class UserController : Controller
     {
         //HttpContext.User is where the user is stored
