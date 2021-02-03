@@ -23,35 +23,19 @@ namespace Flutter.Client.Controllers
         {
             _ctx = context;
         }
-
-
-        // [HttpGet("/users")]
-        // public async Task<IActionResult> GetUsers()
-        // {
-        //     var users = _ctx.Users.ToList();
-
-        //     return await Task.FromResult(Ok(users));
-
-        // }
-        // [HttpGet("/user/{name}")]
-        // public IActionResult GetUser(string name)
-        // {
-        //     var user = _ctx.Users.Include(u => u.Posts).FirstOrDefault(user => user.Name == name);
-
-        //     return Ok(user);
-        // }
-        // [HttpGet("/user/{name}/posts")]
-        // public IActionResult GetUserPosts(string name)
-        // {
-        //     var user = _ctx.Users.FirstOrDefault(user => user.Name == name);
-        //     var posts = _ctx.Posts.Where(post => post.UserId == user.EntityId);
-        //     return Ok(posts);
-        // }
+       
          
         [HttpGet("/post/posts")]
         public IActionResult GetPosts()
         {
             var posts = _ctx.Posts.ToList();
+            return Ok(posts);
+        }
+        [HttpGet("/post/{id}/comments")]
+        public IActionResult GetPostsComments(long id)
+        {
+            var posts = _ctx.Posts.Where(post => post.CommentOfId == id);
+            
             return Ok(posts);
         }
 
@@ -60,6 +44,12 @@ namespace Flutter.Client.Controllers
         {
             var post = _ctx.Posts.FirstOrDefault(post => post.EntityId == id);
 
+            return Ok(post);
+        }
+        [HttpGet("/posts/{user}")]
+        public IActionResult GetPost(string user)
+        {
+            var post = _ctx.Posts.Where(post => post.UserName == user);
             return Ok(post);
         }
 
@@ -94,12 +84,32 @@ namespace Flutter.Client.Controllers
         [HttpPost("/AddPost")]
         public IActionResult AddPost(PostViewModel model)
         {
-            Post ToBeAdded = new Post(model.UserName, model.Content, model.CommentOf);
+            Post ToBeAdded = new Post(model.UserName, model.Content, model.CommentOfId);
             _ctx.Posts.Add(ToBeAdded);
             _ctx.SaveChanges();
 
             return Ok();
         }
+
+        [HttpPut("/Like")]
+        public IActionResult Like(PostViewModel model)
+        {
+            var postToLike = _ctx.Posts.Where(post => post.EntityId == model.PostId).FirstOrDefault<Post>();
+            postToLike.LikeScore = postToLike.LikeScore +1;
+            _ctx.SaveChanges();
+
+            return Ok();
+        }
+        [HttpPut("/DisLike")]
+        public IActionResult DisLike(PostViewModel model)
+        {
+            var postToLike = _ctx.Posts.Where(post => post.EntityId == model.PostId).FirstOrDefault<Post>();
+            postToLike.LikeScore = postToLike.LikeScore -1;
+            _ctx.SaveChanges();
+
+            return Ok();
+        }
+       
     }
 }
 

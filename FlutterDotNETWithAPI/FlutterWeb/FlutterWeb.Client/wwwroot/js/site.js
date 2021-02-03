@@ -3,23 +3,27 @@
 
 // Write your JavaScript code.
 
+
+// Grabs user name
+const user = document.querySelector('#CurrentUser')
+
 // Feed Page Ids
 const Feed = document.querySelector('#FeedPage');
 const FeedContainer = document.querySelector('#FeedContainer')
-// Login Page Ids
-const UserNameInput = document.querySelector('#UserNameInput')
-const PasswordInput = document.querySelector('#PasswordInput')
-const LoginBtn = document.querySelector('#LoginBtn')
 
-// Logged in data value 
-const CurrentUser = document.querySelector('#CurrentUser')
+
+// checks for postView
+const PostView = document.querySelector('#PostView')
+
+// comment view things
+const OGPost = document.querySelector('#OGPost')
+
 
 // Profile feed
 const ProfileFeed = document.querySelector('#ProfileFeed')
 
 // Post ids
-const PostBtn = document.querySelector('#PostBtn')
-const UserId = document.querySelector('#UserId')
+const UserName = document.querySelector('#UserName')
 
 // loads users past posts
 if (ProfileFeed != null) {
@@ -28,35 +32,39 @@ if (ProfileFeed != null) {
 
 function LoadProfileFeed() {
 
-    // this will give the currently logged in user name for queries
-    const user = CurrentUser.dataset.user
-    console.log(user)
-    const ProfileUrl = "https://localhost:6001/user/"+user+"/posts"
+    let UserName = user.getAttribute('data-user')
+    
+    const ProfileUrl = "https://localhost:6001/posts/" + UserName
 
     ajax(ProfileUrl)
 
     function pass(res) {
         console.log(res)
-    
+
         res.json().then(function (data) {
-            console.log(data) 
-            for (let i = 0; i < data.length; i++) {                             
-                
+            console.log(data)
+            for (let i = 0; i < data.length; i++) {
+
                 let post = document.createElement('div')
                 post.setAttribute('class', 'is-post')
                 ProfileFeed.prepend(post)
                 let img = document.createElement('img')
-                img.setAttribute('src', '../batpost.png')
+                img.setAttribute('src', '../../batpost.png')
                 img.setAttribute('class', 'is-post-icon')
                 post.appendChild(img)
                 let UserName = document.createElement('strong')
-                UserName.innerHTML = `${user}`
+                UserName.innerHTML = data[i].userName
                 post.appendChild(UserName)
                 let content = document.createElement('p')
                 content.innerHTML = data[i].content
-                post.appendChild(content)                
+                post.appendChild(content)
+                if(data[i].commentOfId!=0){
+                    let commentNotice = document.createElement('strong')
+                    commentNotice.innerHTML='Comment Post'
+                    post.appendChild(commentNotice)
+                }
             }
-         
+
         })
     }
     function fail(res) {
@@ -70,42 +78,7 @@ function LoadProfileFeed() {
             }
         }).then(pass, fail)
     }
-
-    let UserString = CurrentUser.getAttribute('data-user')
-    let queryUserURL = `https://localhost:6001/user/${UserString}`
-
-    
-    
-    idajax(queryUserURL)
-
-    console.log(UserString)
-
-    function pass2(res) {
-        console.log(res)
-    
-        res.json().then(function (data) {
-            console.log(`id:${data.entityId}`) 
-            UserId.value = data.entityId
-
-            
-                       
-        })
-    }
-    function fail2(res) {
-        console.error(res)
-    }
-    function idajax(input) {
-        fetch(input, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(pass2, fail2)
-    }
    
-
-   
-
 
 }
 
@@ -117,57 +90,157 @@ if (Feed != null) {
 
 function LoadFeed() {
 
-    let users = []
-    // users for feed
-    const userUrl ="https://localhost:6001/users"
-    userajax(userUrl)
-    function userpass(res){
-        console.log(res)
-        res.json()
-        .then(function(data){
-        users = data        
-        console.log(users)
-        })
-    }
 
     // Posts for feed
     const queryURL = "https://localhost:6001/post/posts"
     ajax(queryURL)
     function pass(res) {
-        
 
         res.json().then(function (data) {
-            console.log(users)
+            
 
             for (let i = 0; i < data.length; i++) {
-                
-                let u = users.filter(u => u.entityId == data[i].userId)
-                console.log(u[0].name)
 
-                // TODO once making ajax calls add logic to match users to posts, long nested for loop might make for slower load times though will see
+                
+                if(data[i].commentOfId==0){
+                    console.log(data[i])
+
+                    let post = document.createElement('div')
+                    post.setAttribute('class', 'is-post')
+                    FeedContainer.prepend(post)
+                    let img = document.createElement('img')
+                    img.setAttribute('src', '../../batpost.png')
+                    img.setAttribute('class', 'is-post-icon')
+                    post.appendChild(img)
+                    let UserName = document.createElement('strong')
+                    UserName.innerHTML = data[i].userName
+                    post.appendChild(UserName)
+                    let content = document.createElement('p')
+                    content.innerHTML = data[i].content
+                    post.appendChild(content)
+                    let likes = document.createElement('p')
+                    likes.innerHTML = ` Likes: ${data[i].likeScore}`
+                    post.appendChild(likes)
+                    let CommentBtn = document.createElement('a')
+                    CommentBtn.setAttribute('class', 'button is-Flutter')
+                    CommentBtn.setAttribute('href',`/Post/${data[i].entityId}`)
+                    CommentBtn.innerHTML = 'Comment'
+                    post.appendChild(CommentBtn)
+                    let LikeBtn = document.createElement('a')
+                    LikeBtn.setAttribute('class', 'button is-Flutter')
+                    LikeBtn.setAttribute('data-postId',data[i].entityId)
+                    LikeBtn.innerHTML = 'Like'
+                    post.appendChild(LikeBtn)
+                    LikeBtn.setAttribute('href',`/Post/Like/${data[i].entityId}`)
+                    let DisLikeBtn = document.createElement('a')
+                    DisLikeBtn.setAttribute('class', 'button is-Flutter')
+                    DisLikeBtn.setAttribute('data-postId',data[i].entityId)
+                    DisLikeBtn.setAttribute('href',`/Post/DisLike/${data[i].entityId}`)
+                    DisLikeBtn.innerHTML = 'DisLike'
+                    post.appendChild(DisLikeBtn)
+                }
+                
+            }
+
+        })
+    }
+    function fail(res) {
+        console.error(res)
+    }
+    function ajax(input) {
+        fetch(input, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(pass, fail)
+    }
+
+}
+
+
+// Post Comments Page
+if(PostView != null){
+    PostView.addEventListener('load',LoadComments());
+}
+
+function LoadComments() {
+
+
+    let postId = PostView.getAttribute('data-id')
+     console.log(postId)
+
+       // OG Post
+       const OGURL =`https://localhost:6001/post/${postId}`
+       OGajax(OGURL)
+   
+       function OGpass(res){
+           res.json().then(function(data){
+               console.log(data)
+               let ogpost = document.createElement('div')
+                ogpost.setAttribute('class', 'is-post')
+                OGPost.prepend(ogpost)
+               let content = document.createElement('p')
+                content.innerHTML = data.content
+                ogpost.appendChild(content)
+                
+           }).then(
+               ajax(queryURL)
+
+           )
+       }
+      
+       function OGajax(input) {
+           fetch(input, {
+               method: "GET",
+               headers: {
+                   'Content-Type': 'application/json'
+               }
+           }).then(OGpass, fail)
+       }
+
+    // Comments
+    const queryURL = "https://localhost:6001/post/"+postId+"/comments"
+    function pass(res) {
+
+        res.json().then(function (data) {
+            
+
+            for (let i = 0; i < data.length; i++) {
+
+                console.log(data[i])
+
+
                 let post = document.createElement('div')
                 post.setAttribute('class', 'is-post')
                 FeedContainer.prepend(post)
                 let img = document.createElement('img')
-                img.setAttribute('src', '../batpost.png')
+                img.setAttribute('src', '../../batpost.png')
                 img.setAttribute('class', 'is-post-icon')
                 post.appendChild(img)
                 let UserName = document.createElement('strong')
-                UserName.innerHTML = `${u[0].name}`
+                UserName.innerHTML = data[i].userName
                 post.appendChild(UserName)
                 let content = document.createElement('p')
                 content.innerHTML = data[i].content
                 post.appendChild(content)
-                let CommentBtn = document.createElement('button')
-                CommentBtn.setAttribute('class', 'button is-Flutter')
-                CommentBtn.innerHTML = 'Comment'
-                post.appendChild(CommentBtn)
-                let LikeBtn = document.createElement('button')
+                let likes = document.createElement('p')
+                likes.innerHTML = ` Likes: ${data[i].likeScore}`
+                post.appendChild(likes)
+                let LikeBtn = document.createElement('a')
                 LikeBtn.setAttribute('class', 'button is-Flutter')
+                LikeBtn.setAttribute('data-postId',data[i].entityId)
                 LikeBtn.innerHTML = 'Like'
                 post.appendChild(LikeBtn)
+                LikeBtn.setAttribute('href',`/Post/Like/${data[i].entityId}`)
+                let DisLikeBtn = document.createElement('a')
+                DisLikeBtn.setAttribute('class', 'button is-Flutter')
+                DisLikeBtn.setAttribute('data-postId',data[i].entityId)
+                DisLikeBtn.setAttribute('href',`/Post/DisLike/${data[i].entityId}`)
+                DisLikeBtn.innerHTML = 'DisLike'
+                post.appendChild(DisLikeBtn)
             }
-           
+
         })
     }
     function fail(res) {
@@ -181,72 +254,10 @@ function LoadFeed() {
             }
         }).then(pass, fail)
     }
-    function userajax(input) {
-        fetch(input, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(userpass , fail)
-    }
- 
-
-   
 
 }
-if (LoginBtn != null) {
-    LoginBtn.addEventListener('click', function () {
-        event.preventDefault()
-        Login()
-
-    });
-}
-
-function Login() {
-    const queryURL =  "https://localhost:6001/users"
-
-    ajax(queryURL)
-
-    function pass(res) {
-        console.log(res)
-    
-        res.json().then(function (data) {
-            console.log(data) //options with data here
-            let user = data.find(user => user.name == UserNameInput.value)
-            
-            
-
-    console.log(user)
-
-    if (PasswordInput.value == user.password) {
-        window.location.href = `/Profile/${UserNameInput.value}/${user.entityId}`
-    }
-    else {
-        window.location.href = '/LoginFailed'
-    }
-          
-        })
-    }
-    function fail(res) {
-        console.error(res)
-    }
-    function ajax(input) {
-        fetch(input, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(pass, fail)
-    }
-    
-  
-
-   
-
-    
 
 
-}
 
 
 
@@ -256,7 +267,7 @@ function Login() {
 
 //     res.json().then(function (data) {
 //         console.log(data) //options with data here
-      
+
 //     })
 // }
 // function fail(res) {

@@ -1,6 +1,4 @@
-@{
-  Layout = "_LoggedInLayout";
-}
+
 @model FlutterWeb.Client.Models.UserViewModel
 
 
@@ -9,25 +7,22 @@
     <div class="column is-one-third">
         <div class="filters-container">
             <div class="columns is-centered">
-                <h1 class="is-size-1 is-weight-bold has-text-black" id="LoggedIn">
-                     @*UserName*@
+                <h1 class="is-size-1 is-weight-bold has-text-black" id="CurrentUser" data-user= @Model.UserName>
+                   @Model.UserName
                 </h1>
                 <hr>
             </div>
             <div class="columns is-centered">
                 <div class="is-post">
                     <p>
-                        @*AboutMe*@
-
+                   
                     </p>
                 </div>
                 <hr>
             </div>
             <div class="columns is-centered">
                 <p>
-                    @*Date Joined*@
-
-                </p>
+               </p>
                 <hr>
             </div>
         </div>
@@ -64,8 +59,7 @@
     <div class="column is-one-third is-post-container" >
     
       <form asp-controller="Post" asp-action="AddPost" method="POST">
-        <input class="is-hidden" type="text"  name="UserId" id="UserId" value=@Model.UserId>
-        <input class="is-hidden" type="text"  name="UserName" id="UserName" value=@Model.UserName>
+         <input class="is-hidden" type="text"  name="UserName" id="UserName" value="@User.Identity.Name">
         <textarea class="textarea" placeholder="Your post here" id="PostContent" name="Content"></textarea>
     <button class="button is-Flutter" id="PostBtn" >Post</button>
       </form>

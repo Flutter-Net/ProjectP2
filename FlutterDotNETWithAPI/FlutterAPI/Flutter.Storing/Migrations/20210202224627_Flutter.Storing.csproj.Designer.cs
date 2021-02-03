@@ -4,14 +4,16 @@ using Flutter.Storing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Flutter.Storing.Migrations
 {
     [DbContext(typeof(FlutterContext))]
-    partial class FlutterContextModelSnapshot : ModelSnapshot
+    [Migration("20210202224627_Flutter.Storing.csproj")]
+    partial class FlutterStoringcsproj
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
