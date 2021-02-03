@@ -19,6 +19,13 @@
                 <img src="~/bat (1).png" alt="purple bat" class="is-small-bat">
                 Flutter
             </a>
+            @if (User.Identity.IsAuthenticated){
+                <h1 class="is-size-1">
+                    Welcome Back, @User.Identity.Name
+                </h1>
+            }
+            else
+            {
             <strong>
                     See What's Happening Online
                 </strong>
@@ -27,9 +34,8 @@
                 Sign Up Today
             </strong>
             <br>
-            <a class="button is-large is-rounded is-Flutter"href="/SignUp"> Sign Up </a>
-            <br>
-            <a class="button is-large is-rounded " href="/Login"> Login </a>
+             <a class="button is-Flutter" asp-controller="Account" asp-action="SignIn">Sign In</a>
+            }
         </div>
     </div>
 </div>
