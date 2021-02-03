@@ -39,11 +39,10 @@ namespace Flutter.Client.Controllers
 
             return Ok(post);
         }
-        [HttpGet("/post/{user}")]
+        [HttpGet("/posts/{user}")]
         public IActionResult GetPost(string user)
         {
-            var post = _ctx.Posts.FirstOrDefault(post => post.UserName == user);
-
+            var post = _ctx.Posts.Where(post => post.UserName == user);
             return Ok(post);
         }
 

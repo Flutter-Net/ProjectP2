@@ -55,7 +55,8 @@
           <div class="buttons">
             @if (User.Identity.IsAuthenticated)
             {
-              <p class="navbar-text">Hello, @User.Identity.Name</p>
+              <p class="navbar-text" data-user="@User.Identity.Name" >Hello, @User.Identity.Name</p>
+              <a class="button is-Flutter" href="/Profile" > Profile</a>
             }
             else
             {

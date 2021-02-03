@@ -1,4 +1,5 @@
 using FlutterWeb.Client.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlutterWeb.Client.Controllers

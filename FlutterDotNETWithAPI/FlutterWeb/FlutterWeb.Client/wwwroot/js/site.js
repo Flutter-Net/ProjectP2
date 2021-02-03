@@ -6,20 +6,16 @@
 // Feed Page Ids
 const Feed = document.querySelector('#FeedPage');
 const FeedContainer = document.querySelector('#FeedContainer')
-// Login Page Ids
-const UserNameInput = document.querySelector('#UserNameInput')
-const PasswordInput = document.querySelector('#PasswordInput')
-const LoginBtn = document.querySelector('#LoginBtn')
 
-// Logged in data value 
-const CurrentUser = document.querySelector('#CurrentUser')
+
+
 
 // Profile feed
 const ProfileFeed = document.querySelector('#ProfileFeed')
 
 // Post ids
 const PostBtn = document.querySelector('#PostBtn')
-const UserId = document.querySelector('#UserId')
+const UserName = document.querySelector('#UserName')
 
 // loads users past posts
 if (ProfileFeed != null) {
@@ -28,20 +24,19 @@ if (ProfileFeed != null) {
 
 function LoadProfileFeed() {
 
-    // this will give the currently logged in user name for queries
-    const user = CurrentUser.dataset.user
-    console.log(user)
-    const ProfileUrl = "https://localhost:6001/user/"+user+"/posts"
+    
+    
+    const ProfileUrl = "https://localhost:6001/user/" + user + "/posts"
 
     ajax(ProfileUrl)
 
     function pass(res) {
         console.log(res)
-    
+
         res.json().then(function (data) {
-            console.log(data) 
-            for (let i = 0; i < data.length; i++) {                             
-                
+            console.log(data)
+            for (let i = 0; i < data.length; i++) {
+
                 let post = document.createElement('div')
                 post.setAttribute('class', 'is-post')
                 ProfileFeed.prepend(post)
@@ -50,13 +45,13 @@ function LoadProfileFeed() {
                 img.setAttribute('class', 'is-post-icon')
                 post.appendChild(img)
                 let UserName = document.createElement('strong')
-                UserName.innerHTML = `${user}`
+                UserName.innerHTML = data[i].UserName
                 post.appendChild(UserName)
                 let content = document.createElement('p')
                 content.innerHTML = data[i].content
-                post.appendChild(content)                
+                post.appendChild(content)
             }
-         
+
         })
     }
     function fail(res) {
@@ -74,21 +69,21 @@ function LoadProfileFeed() {
     let UserString = CurrentUser.getAttribute('data-user')
     let queryUserURL = `https://localhost:6001/user/${UserString}`
 
-    
-    
+
+
     idajax(queryUserURL)
 
     console.log(UserString)
 
     function pass2(res) {
         console.log(res)
-    
+
         res.json().then(function (data) {
-            console.log(`id:${data.entityId}`) 
+            console.log(`id:${data.entityId}`)
             UserId.value = data.entityId
 
-            
-                       
+
+
         })
     }
     function fail2(res) {
@@ -102,9 +97,9 @@ function LoadProfileFeed() {
             }
         }).then(pass2, fail2)
     }
-   
 
-   
+
+
 
 
 }
@@ -117,116 +112,42 @@ if (Feed != null) {
 
 function LoadFeed() {
 
-    let users = []
-    // users for feed
-    const userUrl ="https://localhost:6001/users"
-    userajax(userUrl)
-    function userpass(res){
-        console.log(res)
-        res.json()
-        .then(function(data){
-        users = data        
-        console.log(users)
-    }).then(
-        ajax(queryURL)
-        )
-        
-    }
-    
+
     // Posts for feed
     const queryURL = "https://localhost:6001/post/posts"
-        function pass(res) {
-            
-            
-            res.json().then(function (data) {
-                console.log(users)
-                
-                for (let i = 0; i < data.length; i++) {
-                    
-                    let u = users.filter(u => u.entityId == data[i].userId)
-                    console.log(u[0].name)
-                    
-                    
-                    let post = document.createElement('div')
-                    post.setAttribute('class', 'is-post')
-                    FeedContainer.prepend(post)
-                    let img = document.createElement('img')
-                    img.setAttribute('src', '../batpost.png')
-                    img.setAttribute('class', 'is-post-icon')
-                    post.appendChild(img)
-                    let UserName = document.createElement('strong')
-                    UserName.innerHTML = `${u[0].name}`
-                    post.appendChild(UserName)
-                    let content = document.createElement('p')
-                    content.innerHTML = data[i].content
-                    post.appendChild(content)
-                    let CommentBtn = document.createElement('button')
-                    CommentBtn.setAttribute('class', 'button is-Flutter')
-                    CommentBtn.innerHTML = 'Comment'
-                    post.appendChild(CommentBtn)
-                    let LikeBtn = document.createElement('button')
-                    LikeBtn.setAttribute('class', 'button is-Flutter')
-                    LikeBtn.innerHTML = 'Like'
-                    post.appendChild(LikeBtn)
-                }
-                
-            })
-        }
-        function fail(res) {
-            console.error(res)
-        }
-        function ajax(input) {
-            fetch(input, {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(pass, fail)
-        }
-        function userajax(input) {
-            fetch(input, {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(userpass , fail)
-        }
- 
-
-   
-
-}
-if (LoginBtn != null) {
-    LoginBtn.addEventListener('click', function () {
-        event.preventDefault()
-        Login()
-
-    });
-}
-
-function Login() {
-    const queryURL =  "https://localhost:6001/users"
-
     ajax(queryURL)
-
     function pass(res) {
-        console.log(res)
-    
+
         res.json().then(function (data) {
-            console.log(data) //options with data here
-            let user = data.find(user => user.name == UserNameInput.value)
-            
-            
+            console.log(users)
 
-    console.log(user)
+            for (let i = 0; i < data.length; i++) {
 
-    if (PasswordInput.value == user.password) {
-        window.location.href = `/Profile/${UserNameInput.value}/${user.entityId}`
-    }
-    else {
-        window.location.href = '/LoginFailed'
-    }
-          
+
+
+                let post = document.createElement('div')
+                post.setAttribute('class', 'is-post')
+                FeedContainer.prepend(post)
+                let img = document.createElement('img')
+                img.setAttribute('src', '../batpost.png')
+                img.setAttribute('class', 'is-post-icon')
+                post.appendChild(img)
+                let UserName = document.createElement('strong')
+                UserName.innerHTML = data[i].UserName
+                post.appendChild(UserName)
+                let content = document.createElement('p')
+                content.innerHTML = data[i].content
+                post.appendChild(content)
+                let CommentBtn = document.createElement('button')
+                CommentBtn.setAttribute('class', 'button is-Flutter')
+                CommentBtn.innerHTML = 'Comment'
+                post.appendChild(CommentBtn)
+                let LikeBtn = document.createElement('button')
+                LikeBtn.setAttribute('class', 'button is-Flutter')
+                LikeBtn.innerHTML = 'Like'
+                post.appendChild(LikeBtn)
+            }
+
         })
     }
     function fail(res) {
@@ -240,15 +161,14 @@ function Login() {
             }
         }).then(pass, fail)
     }
-    
-  
-
-   
-
-    
-
 
 }
+
+
+
+
+
+
 
 
 
@@ -258,7 +178,7 @@ function Login() {
 
 //     res.json().then(function (data) {
 //         console.log(data) //options with data here
-      
+
 //     })
 // }
 // function fail(res) {

@@ -20,11 +20,12 @@ namespace FlutterWeb.Client.Controllers
         }
         [Authorize]
         [HttpPost]
-        public IActionResult AddPost(string Content, long UserId, string UserName)
+        public IActionResult AddPost(string Content,  string UserName)
         {
 
             var model = new PostViewModel();
-            model.UserId = UserId;
+            model.UserName = UserName;
+            
             model.Content = Content;
             model.CommentOf = 0;
 
@@ -35,7 +36,6 @@ namespace FlutterWeb.Client.Controllers
             if (res.IsSuccessStatusCode)
             {
                 var userModel = new UserViewModel();
-                userModel.UserId = UserId;
                 userModel.UserName = UserName;
                 return View("Profile", userModel);
             }

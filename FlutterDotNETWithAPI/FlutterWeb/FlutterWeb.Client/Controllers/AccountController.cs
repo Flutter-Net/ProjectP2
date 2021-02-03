@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Okta.AspNetCore;
 
+ [Route("[controller]")]
 public class AccountController : Controller
 {
     public IActionResult SignIn()
@@ -12,6 +13,6 @@ public class AccountController : Controller
             return Challenge(OktaDefaults.MvcAuthenticationScheme);
         }
 
-        return RedirectToAction("Profile", "User");
+        return RedirectToAction("index", "Home");
     }
 }
