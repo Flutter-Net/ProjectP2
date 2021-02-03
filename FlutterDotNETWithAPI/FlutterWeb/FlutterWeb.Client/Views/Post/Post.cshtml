@@ -1,13 +1,17 @@
 @{
     ViewData["Title"] = "Post";
 }
+@model FlutterWeb.Client.Models.PostViewModel
 
-
-
-<div class="columns is-centered">
+<div class="columns is-centered" id="PostView" data-id =@Model.CommentOfId>
     <div class="column is-one-third is-post-container">
-        <textarea class="textarea" placeholder="Your post here" id="PostText" onchange="UpdatePostTex()"></textarea>
-        <button class="button is-Flutter" onclick="HandleText()">Post</button>
-        <button class="button is-Flutter">Delete</button>
-    </div>
+        <form asp-controller="Post" asp-action="Comment" method="POST">
+        
+         <input class="is-hidden" type="text"  name="UserName" id="UserName" value="@User.Identity.Name">
+         <input class="is-hidden" type="text"  name="id" id="id" value=@Model.PostId>
+            
+        <textarea class="textarea" placeholder="Your post here" id="PostContent" name="Content"></textarea>
+    <button class="button is-Flutter" >Post</button>
+      </form>
+     </div>
 </div>

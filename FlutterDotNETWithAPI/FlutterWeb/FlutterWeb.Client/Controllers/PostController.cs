@@ -27,7 +27,7 @@ namespace FlutterWeb.Client.Controllers
             model.UserName = UserName;
             
             model.Content = Content;
-            model.CommentOf = 0;
+            model.CommentOfId = 0;
 
             var postPost = client.PostAsJsonAsync<PostViewModel>("https://localhost:6001/AddPost", model);
 
@@ -38,6 +38,30 @@ namespace FlutterWeb.Client.Controllers
                 var userModel = new UserViewModel();
                 userModel.UserName = UserName;
                 return View("Profile", userModel);
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
+        [HttpPost("Comment")]
+        public IActionResult Comment(string Content,  string UserName, long id)
+        {
+
+            var model = new PostViewModel();
+            model.UserName = UserName;
+            
+            model.Content = Content;
+            model.CommentOfId = id;
+
+            var postPost = client.PostAsJsonAsync<PostViewModel>("https://localhost:6001/AddPost", model);
+
+            var res = postPost.Result;
+
+            if (res.IsSuccessStatusCode)
+            {
+               
+                return View("Comments",model);
             }
             else
             {
@@ -80,10 +104,14 @@ namespace FlutterWeb.Client.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        public IActionResult Post()
+        [HttpGet("/Post/{id}")]
+        public IActionResult Post(long id)
         {
-            return View("Post");
+            var model = new PostViewModel();
+            model.PostId = id;
+            model.CommentOfId =id;
+
+            return View("Post",model);
         }
     }
 }

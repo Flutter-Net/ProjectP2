@@ -31,6 +31,13 @@ namespace Flutter.Client.Controllers
             var posts = _ctx.Posts.ToList();
             return Ok(posts);
         }
+        [HttpGet("/post/{id}/comments")]
+        public IActionResult GetPostsComments(long id)
+        {
+            var posts = _ctx.Posts.Where(post => post.CommentOfId == id);
+            
+            return Ok(posts);
+        }
 
         [HttpGet("/post/{id}")]
         public IActionResult GetPost(long id)
@@ -77,7 +84,7 @@ namespace Flutter.Client.Controllers
         [HttpPost("/AddPost")]
         public IActionResult AddPost(PostViewModel model)
         {
-            Post ToBeAdded = new Post(model.UserName, model.Content, model.CommentOf);
+            Post ToBeAdded = new Post(model.UserName, model.Content, model.CommentOfId);
             _ctx.Posts.Add(ToBeAdded);
             _ctx.SaveChanges();
 
