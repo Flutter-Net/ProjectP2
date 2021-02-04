@@ -78,7 +78,7 @@ function LoadProfileFeed() {
             }
         }).then(pass, fail)
     }
-   
+
 
 }
 
@@ -97,12 +97,12 @@ function LoadFeed() {
     function pass(res) {
 
         res.json().then(function (data) {
-            
+
 
             for (let i = 0; i < data.length; i++) {
 
-                
-                if(data[i].commentOfId==0){
+
+                if (data[i].commentOfId == 0) {
                     console.log(data[i])
 
                     let post = document.createElement('div')
@@ -123,23 +123,23 @@ function LoadFeed() {
                     post.appendChild(likes)
                     let CommentBtn = document.createElement('a')
                     CommentBtn.setAttribute('class', 'button is-Flutter')
-                    CommentBtn.setAttribute('href',`/Post/${data[i].entityId}`)
+                    CommentBtn.setAttribute('href', `/Post/${data[i].entityId}`)
                     CommentBtn.innerHTML = 'Comment'
                     post.appendChild(CommentBtn)
                     let LikeBtn = document.createElement('a')
                     LikeBtn.setAttribute('class', 'button is-Flutter')
-                    LikeBtn.setAttribute('data-postId',data[i].entityId)
+                    LikeBtn.setAttribute('data-postId', data[i].entityId)
                     LikeBtn.innerHTML = 'Like'
                     post.appendChild(LikeBtn)
-                    LikeBtn.setAttribute('href',`/Post/Like/${data[i].entityId}`)
+                    LikeBtn.setAttribute('href', `/Post/Like/${data[i].entityId}`)
                     let DisLikeBtn = document.createElement('a')
                     DisLikeBtn.setAttribute('class', 'button is-Flutter')
-                    DisLikeBtn.setAttribute('data-postId',data[i].entityId)
-                    DisLikeBtn.setAttribute('href',`/Post/DisLike/${data[i].entityId}`)
+                    DisLikeBtn.setAttribute('data-postId', data[i].entityId)
+                    DisLikeBtn.setAttribute('href', `/Post/DisLike/${data[i].entityId}`)
                     DisLikeBtn.innerHTML = 'DisLike'
                     post.appendChild(DisLikeBtn)
                 }
-                
+
             }
 
         })
@@ -160,51 +160,51 @@ function LoadFeed() {
 
 
 // Post Comments Page
-if(PostView != null){
-    PostView.addEventListener('load',LoadComments());
+if (PostView != null) {
+    PostView.addEventListener('load', LoadComments());
 }
 
 function LoadComments() {
 
 
     let postId = PostView.getAttribute('data-id')
-     console.log(postId)
+    console.log(postId)
 
-       // OG Post
-       const OGURL =`https://localhost:6001/post/${postId}`
-       OGajax(OGURL)
-   
-       function OGpass(res){
-           res.json().then(function(data){
-               console.log(data)
-               let ogpost = document.createElement('div')
-                ogpost.setAttribute('class', 'is-post')
-                OGPost.prepend(ogpost)
-               let content = document.createElement('p')
-                content.innerHTML = data.content
-                ogpost.appendChild(content)
-                
-           }).then(
-               ajax(queryURL)
+    // OG Post
+    const OGURL = `https://localhost:6001/post/${postId}`
+    OGajax(OGURL)
 
-           )
-       }
-      
-       function OGajax(input) {
-           fetch(input, {
-               method: "GET",
-               headers: {
-                   'Content-Type': 'application/json'
-               }
-           }).then(OGpass, fail)
-       }
+    function OGpass(res) {
+        res.json().then(function (data) {
+            console.log(data)
+            let ogpost = document.createElement('div')
+            ogpost.setAttribute('class', 'is-post')
+            OGPost.prepend(ogpost)
+            let content = document.createElement('p')
+            content.innerHTML = data.content
+            ogpost.appendChild(content)
+
+        }).then(
+            ajax(queryURL)
+
+        )
+    }
+
+    function OGajax(input) {
+        fetch(input, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(OGpass, fail)
+    }
 
     // Comments
-    const queryURL = "https://localhost:6001/post/"+postId+"/comments"
+    const queryURL = "https://localhost:6001/post/" + postId + "/comments"
     function pass(res) {
 
         res.json().then(function (data) {
-            
+
 
             for (let i = 0; i < data.length; i++) {
 
@@ -229,14 +229,14 @@ function LoadComments() {
                 post.appendChild(likes)
                 let LikeBtn = document.createElement('a')
                 LikeBtn.setAttribute('class', 'button is-Flutter')
-                LikeBtn.setAttribute('data-postId',data[i].entityId)
+                LikeBtn.setAttribute('data-postId', data[i].entityId)
                 LikeBtn.innerHTML = 'Like'
                 post.appendChild(LikeBtn)
-                LikeBtn.setAttribute('href',`/Post/Like/${data[i].entityId}`)
+                LikeBtn.setAttribute('href', `/Post/Like/${data[i].entityId}`)
                 let DisLikeBtn = document.createElement('a')
                 DisLikeBtn.setAttribute('class', 'button is-Flutter')
-                DisLikeBtn.setAttribute('data-postId',data[i].entityId)
-                DisLikeBtn.setAttribute('href',`/Post/DisLike/${data[i].entityId}`)
+                DisLikeBtn.setAttribute('data-postId', data[i].entityId)
+                DisLikeBtn.setAttribute('href', `/Post/DisLike/${data[i].entityId}`)
                 DisLikeBtn.innerHTML = 'DisLike'
                 post.appendChild(DisLikeBtn)
             }
