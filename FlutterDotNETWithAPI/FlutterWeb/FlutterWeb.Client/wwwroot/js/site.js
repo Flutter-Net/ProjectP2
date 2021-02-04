@@ -33,7 +33,7 @@ if (ProfileFeed != null) {
 function LoadProfileFeed() {
 
     let UserName = user.getAttribute('data-user')
-    
+
     const ProfileUrl = "https://localhost:6001/posts/" + UserName
 
     ajax(ProfileUrl)
@@ -58,9 +58,9 @@ function LoadProfileFeed() {
                 let content = document.createElement('p')
                 content.innerHTML = data[i].content
                 post.appendChild(content)
-                if(data[i].commentOfId!=0){
+                if (data[i].commentOfId != 0) {
                     let commentNotice = document.createElement('strong')
-                    commentNotice.innerHTML='Comment Post'
+                    commentNotice.innerHTML = 'Comment Post'
                     post.appendChild(commentNotice)
                 }
             }

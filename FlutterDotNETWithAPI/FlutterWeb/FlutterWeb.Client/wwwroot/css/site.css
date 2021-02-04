@@ -94,8 +94,8 @@ a:hover{
   color: blueviolet;
 }
 .is-long{
-  max-width:33vw;
-  min-width:25vw;
+  max-width:15vw;
+  min-width:15vw;
 }
 .filters-container{
   min-height: 25vh;
