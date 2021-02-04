@@ -29,7 +29,7 @@ namespace FlutterWeb.Client.Controllers
             model.Content = Content;
             model.CommentOfId = 0;
 
-            var postPost = client.PostAsJsonAsync<PostViewModel>("https://localhost:6001/AddPost", model);
+            var postPost = client.PostAsJsonAsync<PostViewModel>("https://flutterapi.azurewebsites.net/AddPost", model);
 
             var res = postPost.Result;
 
@@ -54,7 +54,7 @@ namespace FlutterWeb.Client.Controllers
             model.Content = Content;
             model.CommentOfId = id;
 
-            var postPost = client.PostAsJsonAsync<PostViewModel>("https://localhost:6001/AddPost", model);
+            var postPost = client.PostAsJsonAsync<PostViewModel>("https://flutterapi.azurewebsites.net/AddPost", model);
 
             var res = postPost.Result;
 
@@ -74,7 +74,7 @@ namespace FlutterWeb.Client.Controllers
             var model = new PostViewModel();
             model.PostId = id;
             
-            var postLike = client.PutAsJsonAsync<PostViewModel>("https://localhost:6001/Like", model);
+            var postLike = client.PutAsJsonAsync<PostViewModel>("https://flutterapi.azurewebsites.net/Like", model);
             var res = postLike.Result;
             if(res.IsSuccessStatusCode){
 
@@ -91,7 +91,7 @@ namespace FlutterWeb.Client.Controllers
             var model = new PostViewModel();
             model.PostId = id;
             
-            var postLike = client.PutAsJsonAsync<PostViewModel>("https://localhost:6001/DisLike", model);
+            var postLike = client.PutAsJsonAsync<PostViewModel>("https://flutterapi.azurewebsites.net/DisLike", model);
             var res = postLike.Result;
             if(res.IsSuccessStatusCode){
 

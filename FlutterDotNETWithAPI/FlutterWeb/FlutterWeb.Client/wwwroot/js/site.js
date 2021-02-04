@@ -34,7 +34,7 @@ function LoadProfileFeed() {
 
     let UserName = user.getAttribute('data-user')
 
-    const ProfileUrl = "https://localhost:6001/posts/" + UserName
+    const ProfileUrl = "https://flutterapi.azurewebsites.net/posts/" + UserName
 
     ajax(ProfileUrl)
 
@@ -92,7 +92,7 @@ function LoadFeed() {
 
 
     // Posts for feed
-    const queryURL = "https://localhost:6001/post/posts"
+    const queryURL = "https://flutterapi.azurewebsites.net/post/posts"
     ajax(queryURL)
     function pass(res) {
 
@@ -171,7 +171,7 @@ function LoadComments() {
     console.log(postId)
 
     // OG Post
-    const OGURL = `https://localhost:6001/post/${postId}`
+    const OGURL = `https://flutterapi.azurewebsites.net/post/${postId}`
     OGajax(OGURL)
 
     function OGpass(res) {
@@ -200,7 +200,7 @@ function LoadComments() {
     }
 
     // Comments
-    const queryURL = "https://localhost:6001/post/" + postId + "/comments"
+    const queryURL = "https://flutterapi.azurewebsites.net/post/" + postId + "/comments"
     function pass(res) {
 
         res.json().then(function (data) {
