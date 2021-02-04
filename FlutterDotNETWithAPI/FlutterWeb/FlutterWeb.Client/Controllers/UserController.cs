@@ -12,7 +12,7 @@ namespace FlutterWeb.Client.Controllers
         //HttpContext.User is where the user is stored
         
         [Authorize]
-        [HttpGet("/Profile")]
+        [HttpGet("/profile")]
         public IActionResult Profile()
         {
             var model = new UserViewModel();
