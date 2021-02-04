@@ -6,15 +6,18 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
 using FlutterWeb.Client.Models;
+using Okta.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace FlutterWeb.Client.Controllers
 {
 
-     [Route("[controller]")]
+    [Route("[controller]")]
     public class HomeController : Controller
     {
 
-        
+
 
 
         [HttpGet("/")]
@@ -22,15 +25,13 @@ namespace FlutterWeb.Client.Controllers
         {
             return View();
         }
+        
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+
         [HttpGet("/ComingSoon")]
         public IActionResult ComingSoon()
         {
-          return View("ComingSoon");
+            return View("ComingSoon");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
