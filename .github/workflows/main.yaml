@@ -76,8 +76,8 @@ jobs:
           images: flutter2021/projectp2flutter:flutterapi
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: FlutterAPI
-          images: flutter2021/projectp2flutter:flutterapi
+          app-name: FlutterMVC
+          images: flutter2021/projectp2flutter:fluttermvc
 
 on: 
   push:
