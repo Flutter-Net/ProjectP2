@@ -40,7 +40,7 @@ namespace Flutter.Client
            options.AddPolicy(name: MyAllowSpecificOrigins,
                              builder =>
                              {
-                                 builder.WithOrigins("https://localhost:5001").AllowAnyHeader().AllowAnyMethod();
+                                 builder.WithOrigins("https://fluttermvc.azurewebsites.net").AllowAnyHeader().AllowAnyMethod();
                              });
        });
         }
