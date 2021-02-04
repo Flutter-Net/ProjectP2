@@ -42,7 +42,7 @@
               <a class="navbar-item" href="/Feed">
                 Feed
               </a>
-              
+
             </div>
           </div>
         </div>
@@ -53,14 +53,26 @@
 
         <div class="navbar-item">
           <div class="buttons">
+            @*...*@
             @if (User.Identity.IsAuthenticated)
             {
-              <p class="navbar-text" data-user="@User.Identity.Name" id="CurrentUser">Hello, @User.Identity.Name</p>
-              <a class="button is-Flutter" href="/Profile" > Profile</a>
+              <ul>
+                <li>
+                  <p>Hello, @User.Identity.Name</p>
+                </li>
+                <li>
+                  <a onclick="document.getElementById('logout_form').submit();" style="cursor: pointer;">
+                    Sign out
+                  </a>
+                </li>
+              </ul>
+              <form asp-controller="Account" asp-action="PostSignOut" method="post" id="logout_form"></form>
             }
             else
             {
-              <a class="button is-Flutter" asp-controller="Account" asp-action="SignIn">Sign In</a>
+              <ul>
+                <li><a asp-controller="Account" asp-action="SignIn">Sign in</a></li>
+              </ul>
             }
           </div>
         </div>
